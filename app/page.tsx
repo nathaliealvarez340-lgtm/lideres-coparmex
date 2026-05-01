@@ -210,7 +210,9 @@ function SelectionProcess() {
       <div className="process-track">
         {phases.map((phase, index) => (
           <div className="process-step" key={phase.title}>
-            <span className="process-circle">{index + 1}</span>
+            <span className="process-step-number" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <div className="process-copy">
               <span>Fase {index + 1}</span>
               <h3>{phase.title}</h3>
