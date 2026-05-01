@@ -9,6 +9,7 @@ type ApplicationFormProps = {
 type FormStatus = "idle" | "sending" | "success" | "error";
 
 const acceptedTypes = ["application/pdf", "image/png"];
+const acceptedExtensions = [".pdf", ".png"];
 const minimumWords = 100;
 const pasteWarning =
   "Para asegurar una respuesta auténtica, este campo debe escribirse manualmente.";
@@ -70,7 +71,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
       return;
     }
 
-    if (!acceptedTypes.includes(file.type)) {
+    if (!isAllowedFile(file)) {
       setStatus("error");
       setMessage("El CV debe ser PDF o PNG.");
       return;
@@ -371,5 +372,14 @@ function countWords(text: string) {
   return (
     normalizeText(text).match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu)
       ?.length ?? 0
+  );
+}
+
+function isAllowedFile(file: File) {
+  const fileName = file.name.toLowerCase();
+
+  return (
+    acceptedTypes.includes(file.type) ||
+    acceptedExtensions.some((extension) => fileName.endsWith(extension))
   );
 }

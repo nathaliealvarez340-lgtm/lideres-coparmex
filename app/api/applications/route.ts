@@ -15,144 +15,146 @@ const allowedCoordinations = [
 ];
 
 const allowedFileTypes = ["application/pdf", "image/png"];
+const allowedFileExtensions = [".pdf", ".png"];
 const maxFileSize = 5 * 1024 * 1024;
 
 export async function POST(request: Request) {
-  const formData = await request.formData();
-  const values = Object.fromEntries(
-    requiredFields.map((field) => [
-      field,
-      String(formData.get(field) ?? "").trim(),
-    ]),
-  );
-  const cv = formData.get("cv");
-  const authenticity = {
-    result: String(formData.get("authenticityResult") ?? "No enviado").trim(),
-    score: String(formData.get("authenticityScore") ?? "No enviado").trim(),
-    writingTime: String(
-      formData.get("authenticityWritingTime") ?? "No enviado",
-    ).trim(),
-    pasteAttempts: String(
-      formData.get("authenticityPasteAttempts") ?? "No enviado",
-    ).trim(),
-    typingSpeed: String(
-      formData.get("authenticityTypingSpeed") ?? "No enviado",
-    ).trim(),
-    warning: String(
-      formData.get("authenticityWarning") ??
-        "Este resultado es orientativo y debe revisarse manualmente.",
-    ).trim(),
-  };
-
-  const missingField = requiredFields.find((field) => !values[field]);
-
-  if (missingField) {
-    return Response.json(
-      { message: "Todos los campos son obligatorios." },
-      { status: 400 },
+  try {
+    const formData = await request.formData();
+    const values = Object.fromEntries(
+      requiredFields.map((field) => [
+        field,
+        String(formData.get(field) ?? "").trim(),
+      ]),
     );
-  }
+    const cv = formData.get("cv");
 
-  if (!isValidEmail(values.email)) {
+    const missingField = requiredFields.find((field) => !values[field]);
+
+    if (missingField) {
+      return Response.json(
+        { message: "Todos los campos son obligatorios." },
+        { status: 400 },
+      );
+    }
+
+    if (!isValidEmail(values.email)) {
+      return Response.json(
+        { message: "Ingresa un correo válido." },
+        { status: 400 },
+      );
+    }
+
+    if (!allowedCoordinations.includes(values.coordination)) {
+      return Response.json(
+        { message: "Selecciona una coordinación válida." },
+        { status: 400 },
+      );
+    }
+
+    if (values.why.length < 20) {
+      return Response.json(
+        { message: "Cuéntanos un poco más sobre tu perfil." },
+        { status: 400 },
+      );
+    }
+
+    if (!(cv instanceof File) || cv.size === 0) {
+      return Response.json(
+        { message: "Sube tu CV en formato PDF o PNG." },
+        { status: 400 },
+      );
+    }
+
+    if (!isAllowedFile(cv)) {
+      return Response.json(
+        { message: "El CV debe ser PDF o PNG." },
+        { status: 400 },
+      );
+    }
+
+    if (cv.size > maxFileSize) {
+      return Response.json(
+        { message: "El archivo no puede pesar más de 5 MB." },
+        { status: 400 },
+      );
+    }
+
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      throw new Error("Missing RESEND_API_KEY");
+    }
+
+    const attachment = Buffer.from(await cv.arrayBuffer()).toString("base64");
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from:
+          process.env.RESEND_FROM_EMAIL ??
+          "Mesa de Líderes COPARMEX <onboarding@resend.dev>",
+        to: ["nathaliealvarez340@gmail.com"],
+        reply_to: values.email,
+        subject: `Nueva postulación - ${values.fullName}`,
+        html: buildEmailHtml(values),
+        attachments: [
+          {
+            filename: cv.name || "cv-postulante",
+            content: attachment,
+            content_type: cv.type || getContentTypeFromName(cv.name),
+          },
+        ],
+        tags: [
+          {
+            name: "source",
+            value: "lideres_coparmex_landing",
+          },
+        ],
+      }),
+    });
+
+    if (!resendResponse.ok) {
+      const resendError = await resendResponse.text();
+      throw new Error(
+        `Resend error ${resendResponse.status}: ${resendError || resendResponse.statusText}`,
+      );
+    }
+
+    return Response.json({ message: "Gracias por postularte…" });
+  } catch (error) {
+    if (process.env.NODE_ENV === "development") {
+      console.error("Application submit error:", error);
+    }
+
     return Response.json(
-      { message: "Ingresa un correo válido." },
-      { status: 400 },
-    );
-  }
-
-  if (!allowedCoordinations.includes(values.coordination)) {
-    return Response.json(
-      { message: "Selecciona una coordinación válida." },
-      { status: 400 },
-    );
-  }
-
-  if (values.why.length < 20) {
-    return Response.json(
-      { message: "Cuéntanos un poco más sobre tu perfil." },
-      { status: 400 },
-    );
-  }
-
-  if (!(cv instanceof File) || cv.size === 0) {
-    return Response.json(
-      { message: "Sube tu CV en formato PDF o PNG." },
-      { status: 400 },
-    );
-  }
-
-  if (!allowedFileTypes.includes(cv.type)) {
-    return Response.json(
-      { message: "El CV debe ser PDF o PNG." },
-      { status: 400 },
-    );
-  }
-
-  if (cv.size > maxFileSize) {
-    return Response.json(
-      { message: "El archivo no puede pesar más de 5 MB." },
-      { status: 400 },
-    );
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
-
-  if (!apiKey) {
-    return Response.json(
-      { message: "Falta configurar RESEND_API_KEY en el servidor." },
+      { message: "No pudimos enviar tu postulación. Inténtalo de nuevo." },
       { status: 500 },
     );
   }
-
-  const attachment = Buffer.from(await cv.arrayBuffer()).toString("base64");
-  const resendResponse = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from:
-        process.env.RESEND_FROM_EMAIL ??
-        "Mesa de Líderes COPARMEX <onboarding@resend.dev>",
-      to: ["nathaliealvarez340@gmail.com"],
-      reply_to: values.email,
-      subject: `Nueva postulación - ${values.fullName}`,
-      html: buildEmailHtml(values, authenticity),
-      attachments: [
-        {
-          filename: cv.name || "cv-postulante",
-          content: attachment,
-          content_type: cv.type,
-        },
-      ],
-      tags: [
-        {
-          name: "source",
-          value: "lideres_coparmex_landing",
-        },
-      ],
-    }),
-  });
-
-  if (!resendResponse.ok) {
-    return Response.json(
-      { message: "No pudimos enviar tu postulación. Inténtalo de nuevo." },
-      { status: 502 },
-    );
-  }
-
-  return Response.json({ message: "Gracias por postularte…" });
 }
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function buildEmailHtml(
-  values: Record<string, string>,
-  authenticity: Record<string, string>,
-) {
+function isAllowedFile(file: File) {
+  const fileName = file.name.toLowerCase();
+
+  return (
+    allowedFileTypes.includes(file.type) ||
+    allowedFileExtensions.some((extension) => fileName.endsWith(extension))
+  );
+}
+
+function getContentTypeFromName(fileName: string) {
+  return fileName.toLowerCase().endsWith(".png") ? "image/png" : "application/pdf";
+}
+
+function buildEmailHtml(values: Record<string, string>) {
   return `
     <div style="font-family: Arial, sans-serif; color: #111; line-height: 1.6;">
       <h1>Nueva postulación a la Mesa de Líderes COPARMEX</h1>
@@ -163,14 +165,6 @@ function buildEmailHtml(
       <p><strong>Coordinación:</strong> ${escapeHtml(values.coordination)}</p>
       <p><strong>¿Por qué deberían considerarle?</strong></p>
       <p>${escapeHtml(values.why).replace(/\n/g, "<br />")}</p>
-      <hr style="border: 0; border-top: 1px solid #ddd; margin: 24px 0;" />
-      <h2>Filtro de autenticidad</h2>
-      <p><strong>Resultado:</strong> ${escapeHtml(authenticity.result)}</p>
-      <p><strong>Tiempo de escritura:</strong> ${escapeHtml(authenticity.writingTime)}</p>
-      <p><strong>Intentos de pegado:</strong> ${escapeHtml(authenticity.pasteAttempts)}</p>
-      <p><strong>Velocidad aproximada:</strong> ${escapeHtml(authenticity.typingSpeed)}</p>
-      <p><strong>Score de riesgo:</strong> ${escapeHtml(authenticity.score)}</p>
-      <p><strong>Advertencia:</strong> ${escapeHtml(authenticity.warning)}</p>
     </div>
   `;
 }

@@ -149,6 +149,8 @@ body {
 .success-panel::before {
   position: absolute;
   inset: 0;
+  z-index: 0;
+  border-radius: inherit;
   background:
     radial-gradient(circle at 16% 0%, rgba(200, 164, 93, 0.22), transparent 34%),
     radial-gradient(circle at 100% 100%, rgba(122, 17, 25, 0.24), transparent 32%);
@@ -569,12 +571,14 @@ body {
 .form-panel {
   overflow: visible;
   border-radius: 34px;
+  isolation: isolate;
   padding: 24px;
 }
 
 .form-panel > *,
 .success-panel > * {
   position: relative;
+  z-index: 1;
 }
 
 .success-panel {
