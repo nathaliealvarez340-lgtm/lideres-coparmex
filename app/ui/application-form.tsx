@@ -10,6 +10,7 @@ type FormStatus = "idle" | "sending" | "success" | "error";
 
 const acceptedTypes = ["application/pdf", "image/png"];
 const acceptedExtensions = [".pdf", ".png"];
+const maxFileSize = 15 * 1024 * 1024;
 const minimumWords = 100;
 const pasteWarning =
   "Para asegurar una respuesta auténtica, este campo debe escribirse manualmente.";
@@ -77,9 +78,9 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
+    if (file.size > maxFileSize) {
       setStatus("error");
-      setMessage("El archivo no puede pesar más de 5 MB.");
+      setMessage("El archivo no puede pesar más de 15 MB.");
       return;
     }
 
@@ -297,7 +298,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
             {fileName || "Sube tu CV PDF o PNG"}
           </span>
           <span className="hidden text-sm leading-6 text-[#e8dfcf]/62 sm:block">
-            Máximo 5 MB
+            Máximo 15 MB
           </span>
         </label>
       </div>
