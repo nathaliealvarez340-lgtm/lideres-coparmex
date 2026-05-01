@@ -16,7 +16,7 @@ const allowedCoordinations = [
 
 const allowedFileTypes = ["application/pdf", "image/png"];
 const allowedFileExtensions = [".pdf", ".png"];
-const maxFileSize = 15 * 1024 * 1024;
+const maxFileSize = 4.4 * 1024 * 1024;
 
 export async function POST(request: Request) {
   try {
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
 
     if (cv.size > maxFileSize) {
       return Response.json(
-        { message: "El archivo no puede pesar más de 15 MB." },
+        { message: "El archivo no puede pesar más de 4.4 MB." },
         { status: 400 },
       );
     }
