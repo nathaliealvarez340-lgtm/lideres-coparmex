@@ -47,15 +47,16 @@ body {
   min-height: 56px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 240, 168, 0.5);
+  border: 1px solid rgba(255, 248, 232, 0.16);
   border-radius: 999px;
   background:
-    linear-gradient(135deg, #f2db91, #c8a45d 42%, #8e5f22),
-    #c8a45d;
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.14), transparent 34%),
+    linear-gradient(135deg, #831922 0%, #3f0b16 48%, #070509 100%);
   box-shadow:
-    0 0 42px rgba(200, 164, 93, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.36);
-  color: #130d08;
+    0 18px 48px rgba(0, 0, 0, 0.28),
+    0 0 28px rgba(131, 25, 34, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  color: #fff8e8;
   font-weight: 700;
   padding: 0 32px;
   text-align: center;
@@ -67,15 +68,16 @@ body {
 
 .premium-button:hover {
   box-shadow:
-    0 0 58px rgba(200, 164, 93, 0.36),
-    0 12px 38px rgba(122, 17, 25, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.44);
-  filter: saturate(1.08);
-  transform: translateY(-2px);
+    0 0 34px rgba(207, 48, 61, 0.36),
+    0 0 42px rgba(71, 214, 225, 0.18),
+    0 20px 54px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  filter: saturate(1.12);
+  transform: translateY(-1px) scale(1.025);
 }
 
 .premium-button:focus-visible {
-  outline: 2px solid #fff0a8;
+  outline: 2px solid rgba(71, 214, 225, 0.78);
   outline-offset: 4px;
 }
 
@@ -83,6 +85,80 @@ body {
   cursor: not-allowed;
   opacity: 0.62;
   transform: none;
+}
+
+.countdown-number {
+  animation: countdown-pulse 460ms ease both;
+  text-shadow:
+    0 0 28px rgba(207, 48, 61, 0.2),
+    0 0 40px rgba(71, 214, 225, 0.08);
+}
+
+.logo-marquee {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  max-width: 100%;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: logo-marquee 26s linear infinite;
+}
+
+.logo-marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 34px;
+  padding-right: 34px;
+}
+
+.partner-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.7;
+  filter: brightness(1.2);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.partner-logo:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes countdown-pulse {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .section-kicker {
@@ -251,5 +327,14 @@ body {
 
   .success-panel {
     padding: 72px 44px;
+  }
+
+  .logo-marquee-group {
+    gap: 44px;
+    padding-right: 44px;
+  }
+
+  .partner-logo {
+    height: 40px;
   }
 }

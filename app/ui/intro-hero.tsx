@@ -19,9 +19,9 @@ export function IntroHero() {
 
   return (
     <section className="relative flex min-h-screen items-center px-6 py-24 sm:px-10 lg:px-14">
-      <div className="mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-[1fr_360px] lg:items-end">
-        <div className="max-w-5xl">
-          <div className="mb-8 flex items-center gap-4">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-center xl:grid-cols-[minmax(0,1fr)_310px]">
+        <div className="max-w-5xl text-center lg:text-left">
+          <div className="mb-8 flex items-center justify-center gap-4 lg:justify-start">
             <span className="h-px w-14 bg-gradient-to-r from-[#c8a45d] to-transparent" />
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d8bd7a]">
               Convocatoria estudiantil
@@ -32,7 +32,7 @@ export function IntroHero() {
             Forma parte de la Mesa de Líderes COPARMEX
           </h1>
 
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-[#e8dfcf]/85 sm:text-2xl sm:leading-10">
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[#e8dfcf]/85 sm:text-2xl sm:leading-10 lg:mx-0">
             Entra a una comunidad selectiva donde el liderazgo joven se prueba
             en proyectos reales, alianzas estratégicas y decisiones que abren
             camino dentro del ecosistema empresarial.
@@ -51,27 +51,20 @@ export function IntroHero() {
           </div>
         </div>
 
-        <div className="glass-panel relative overflow-hidden p-7">
-          <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#e5c477] to-transparent" />
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d8bd7a]">
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d8bd7a]/90">
             Acceso en
           </p>
-          <div className="mt-6 flex items-end gap-4">
-            <span className="font-mono text-8xl font-semibold leading-none text-[#fff8e8] sm:text-9xl">
-              {count}
-            </span>
-            <span className="mb-4 text-sm uppercase tracking-[0.24em] text-[#e8dfcf]/60">
-              segundos
+          <div className="mt-4 min-h-[5.2rem] overflow-hidden sm:min-h-[6.4rem] lg:min-h-[7rem]">
+            <span
+              className="countdown-number block font-mono text-7xl font-semibold leading-none text-[#fff8e8] sm:text-8xl lg:text-7xl xl:text-8xl"
+              key={count}
+            >
+              {String(count).padStart(2, "0")}
             </span>
           </div>
-          <div className="mt-7 h-1 overflow-hidden rounded-full bg-white/10">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-[#7a1119] via-[#c8a45d] to-[#fff0a8] transition-all duration-700"
-              style={{ width: `${((5 - count) / 5) * 100}%` }}
-            />
-          </div>
-          <p className="mt-6 text-sm leading-6 text-[#e8dfcf]/70">
-            La postulación se desbloquea al terminar la introducción.
+          <p className="mt-2 text-xs font-medium uppercase tracking-[0.28em] text-[#e8dfcf]/62">
+            segundos
           </p>
         </div>
       </div>
