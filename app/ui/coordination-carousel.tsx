@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ClipboardList, Handshake, Megaphone, Route } from "lucide-react";
+import {
+  ClipboardCheck,
+  HandCoins,
+  MapPinned,
+  MessagesSquare,
+} from "lucide-react";
 
 type Coordination = {
   name: string;
@@ -94,10 +99,10 @@ export function CoordinationCarousel({
 
 function Icon({ index }: { index: number }) {
   const icons = [
-    <Megaphone key="marketing" size={34} strokeWidth={1.7} />,
-    <Handshake key="sponsor" size={34} strokeWidth={1.7} />,
-    <ClipboardList key="admin" size={34} strokeWidth={1.7} />,
-    <Route key="logistics" size={34} strokeWidth={1.7} />,
+    <MessagesSquare key="marketing" size={32} strokeWidth={1.8} />,
+    <HandCoins key="sponsor" size={32} strokeWidth={1.8} />,
+    <ClipboardCheck key="admin" size={32} strokeWidth={1.8} />,
+    <MapPinned key="logistics" size={32} strokeWidth={1.8} />,
   ];
 
   return icons[index];
