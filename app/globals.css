@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030204;
+  --background: #0a0608;
   --foreground: #fff8e8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
 * {
@@ -29,18 +29,12 @@ body {
 
 ::selection {
   background: #c8a45d;
-  color: #080506;
+  color: #000;
 }
 
-.glass-panel {
-  border: 1px solid rgba(255, 248, 232, 0.13);
-  border-radius: 28px;
-  background:
-    linear-gradient(135deg, rgba(255, 248, 232, 0.12), rgba(255, 248, 232, 0.035)),
-    rgba(12, 7, 9, 0.48);
-  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(22px);
-}
+/* ===================== */
+/* BOTONES */
+/* ===================== */
 
 .premium-button {
   display: inline-flex;
@@ -50,278 +44,162 @@ body {
   border: 1px solid rgba(255, 248, 232, 0.16);
   border-radius: 999px;
   background:
-    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.14), transparent 34%),
-    linear-gradient(135deg, #831922 0%, #3f0b16 48%, #070509 100%);
-  box-shadow:
-    0 18px 48px rgba(0, 0, 0, 0.28),
-    0 0 28px rgba(131, 25, 34, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    radial-gradient(circle at 20% 0%, rgba(255,255,255,0.14), transparent 34%),
+    linear-gradient(135deg, #531922 0%, #3b1b16 40%, #270509 100%);
   color: #fff8e8;
   font-weight: 700;
   padding: 0 32px;
-  text-align: center;
-  transition:
-    transform 220ms ease,
-    box-shadow 220ms ease,
-    filter 220ms ease;
+  transition: 220ms ease;
 }
 
 .premium-button:hover {
-  box-shadow:
-    0 0 34px rgba(207, 48, 61, 0.36),
-    0 0 42px rgba(71, 214, 225, 0.18),
-    0 20px 54px rgba(0, 0, 0, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  filter: saturate(1.12);
-  transform: translateY(-1px) scale(1.025);
+  transform: translateY(-1px) scale(1.02);
 }
 
-.premium-button:focus-visible {
-  outline: 2px solid rgba(71, 214, 225, 0.78);
-  outline-offset: 4px;
-}
-
-.premium-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.62;
-  transform: none;
-}
-
-.countdown-number {
-  animation: countdown-pulse 460ms ease both;
-  text-shadow:
-    0 0 28px rgba(207, 48, 61, 0.2),
-    0 0 40px rgba(71, 214, 225, 0.08);
-}
-
-.intro-unlock {
-  animation: intro-unlock 700ms ease both;
-}
-
-@keyframes countdown-pulse {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes intro-unlock {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.section-kicker {
-  color: #c8a45d;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
+/* ===================== */
+/* CAROUSEL */
+/* ===================== */
 
 .carousel-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
   gap: 22px;
   width: 100%;
   max-width: 1200px;
 }
 
+/* TARJETA */
+
 .coordination-feature-card {
   position: relative;
   overflow: hidden;
   min-height: 315px;
   border: 1px solid rgba(255, 248, 232, 0.14);
   border-radius: 28px;
-  background:
-    radial-gradient(circle at 22% 0%, rgba(200, 164, 93, 0.18), transparent 34%),
-    radial-gradient(circle at 100% 100%, rgba(122, 17, 25, 0.28), transparent 38%),
-    linear-gradient(145deg, rgba(255, 248, 232, 0.12), rgba(255, 248, 232, 0.035)),
-    rgba(10, 6, 8, 0.58);
-  box-shadow: 0 28px 94px rgba(0, 0, 0, 0.38);
-  backdrop-filter: blur(22px);
-  color: inherit;
-  cursor: pointer;
-  padding: 28px;
-  text-align: left;
-  transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease;
-  animation: card-enter 420ms ease both;
-}
 
-.carousel-card {
-  width: 100%;
-  flex: 1;
-  flex-shrink: 0;
+  background:
+    radial-gradient(circle at 22% 0%, rgba(200,164,93,0.18), transparent 34%),
+    radial-gradient(circle at 100% 100%, rgba(122,17,25,0.28), transparent 38%),
+    linear-gradient(145deg, rgba(255,248,232,0.12), rgba(255,248,232,0.035)),
+    rgba(10,6,8,0.58);
+
+  box-shadow: 0 28px 94px rgba(0,0,0,0.38);
+  backdrop-filter: blur(22px);
+
+  padding: 28px;
+  cursor: pointer;
+
+  transition: 220ms ease;
 }
 
 .coordination-feature-card:hover {
-  border-color: rgba(200, 164, 93, 0.36);
-  box-shadow:
-    0 34px 104px rgba(0, 0, 0, 0.42),
-    0 0 42px rgba(122, 17, 25, 0.18);
   transform: translateY(-3px);
 }
 
-.coordination-feature-topline {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.coordination-number {
-  color: rgba(216, 189, 122, 0.84);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1;
-}
-
-.coordination-icon {
-  display: block;
-  color: #f2db91;
-}
-
-.coordination-icon svg {
-  display: block;
-}
-
-.coordination-feature-card h3 {
-  margin-top: 58px;
-  color: #fff8e8;
-  font-size: clamp(2rem, 3.5vw, 2.65rem);
-  font-weight: 650;
-  line-height: 1.02;
-}
-
-.coordination-description {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition:
-    grid-template-rows 260ms ease,
-    opacity 220ms ease,
-    margin-top 260ms ease;
-}
-
-.coordination-description p {
-  overflow: hidden;
-  color: rgba(232, 223, 207, 0.74);
-  font-size: 0.98rem;
-  line-height: 1.65;
-}
-
-.coordination-feature-card.is-expanded .coordination-description {
-  grid-template-rows: 1fr;
-  margin-top: 22px;
-  opacity: 1;
-}
-
-.coordination-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
-}
-
-.coordination-controls > button {
-  display: grid;
-  height: 44px;
-.coordination-feature-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 315px;
-  border: 1px solid rgba(255, 248, 232, 0.14);
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 22% 0%, rgba(200, 164, 93, 0.18), transparent 34%),
-    radial-gradient(circle at 100% 100%, rgba(122, 17, 25, 0.28), transparent 38%),
-    linear-gradient(145deg, rgba(255, 248, 232, 0.12), rgba(255, 248, 232, 0.035)),
-    rgba(10, 6, 8, 0.58);
-  box-shadow: 0 28px 94px rgba(0, 0, 0, 0.38);
-  backdrop-filter: blur(22px);
-  color: inherit;
-  cursor: pointer;
-  padding: 28px;
-  text-align: left;
-  transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    box-shadow 220ms ease;
-  animation: card-enter 420ms ease both;
-}
+/* NUMERO GRANDE */
 
 .coordination-ghost-number {
   position: absolute;
   top: 50%;
-  right: -0.08em;
-  z-index: 0;
-  color: rgba(255, 248, 232, 0.075);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: clamp(7rem, 17vw, 16rem);
+  right: -0.05em;
+
+  font-size: clamp(7rem, 18vw, 18rem);
   font-weight: 800;
   letter-spacing: -0.16em;
   line-height: 0.8;
-  pointer-events: none;
+
+  color: rgba(255,248,232,0.06);
+
   transform: translateY(-50%);
-  user-select: none;
+  pointer-events: none;
 }
+
+/* CONTENIDO */
 
 .coordination-feature-topline,
 .coordination-feature-card h3,
 .coordination-description {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .coordination-feature-topline {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 20px;
 }
 
 .coordination-number {
-  color: rgba(216, 189, 122, 0.84);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 14px;
-  font-weight: 600;
   letter-spacing: 0.14em;
-  line-height: 1;
+  color: rgba(216,189,122,0.84);
 }
 
 .coordination-icon {
-  display: block;
   color: #f2db91;
-  position: relative;
-  z-index: 2;
 }
 
-.coordination-icon svg {
-  display: block;
+/* TITULO */
+
+.coordination-feature-card h3 {
+  margin-top: 60px;
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
 }
+
+/* DESCRIPCIÓN */
+
+.coordination-description {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.coordination-feature-card.is-expanded .coordination-description {
+  opacity: 1;
+  max-height: 200px;
+  margin-top: 20px;
+}
+
+/* CONTROLES */
+
+.coordination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.coordination-controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: rgba(255,248,232,0.05);
+  border: 1px solid rgba(255,248,232,0.14);
+  color: #fff;
+}
+
+/* DOTS */
+
+.coordination-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.coordination-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,248,232,0.2);
+}
+
+.coordination-dots .is-active {
+  width: 24px;
+  background: #c8a45d;
+}
+
+/* MOBILE */
 
 @media (max-width: 640px) {
   .coordination-ghost-number {
-    right: -0.12em;
     font-size: clamp(6rem, 28vw, 10rem);
   }
 }
