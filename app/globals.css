@@ -460,21 +460,23 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-top: 24px;
+  gap: 34px;
+  margin-top: 36px;
 }
 
 .process-track::before {
   position: absolute;
-  top: 34px;
-  left: 8%;
-  right: 8%;
+  top: 42px;
+  left: calc(12.5% - 2px);
+  right: calc(12.5% - 2px);
   height: 1px;
   background: linear-gradient(
     90deg,
-    rgba(122, 17, 25, 0.15),
-    rgba(200, 164, 93, 0.42),
-    rgba(122, 17, 25, 0.15)
+    rgba(122, 17, 25, 0.08),
+    rgba(200, 164, 93, 0.58),
+    rgba(122, 17, 25, 0.28),
+    rgba(200, 164, 93, 0.5),
+    rgba(122, 17, 25, 0.08)
   );
   content: "";
 }
@@ -482,49 +484,92 @@ body {
 .process-step {
   position: relative;
   display: flex;
-  min-height: 154px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: 1px solid rgba(255, 248, 232, 0.12);
-  border-radius: 24px;
-  background:
-    linear-gradient(145deg, rgba(255, 248, 232, 0.08), rgba(255, 248, 232, 0.025)),
-    rgba(10, 6, 8, 0.42);
-  box-shadow:
-    0 24px 70px rgba(0, 0, 0, 0.32),
-    0 0 30px rgba(122, 17, 25, 0.1);
-  backdrop-filter: blur(18px);
-  padding: 22px 16px 18px;
+  padding: 0 8px;
   text-align: center;
+  animation: process-step-enter 560ms ease both;
+}
+
+.process-step:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.process-step:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.process-step:nth-child(4) {
+  animation-delay: 270ms;
 }
 
 .process-circle {
+  position: relative;
+  z-index: 2;
   display: grid;
-  height: 68px;
-  width: 68px;
+  height: 84px;
+  width: 84px;
   place-items: center;
-  border: 1px solid rgba(200, 164, 93, 0.38);
+  border: 1px solid rgba(216, 189, 122, 0.68);
   border-radius: 999px;
   background:
-    radial-gradient(circle at 30% 20%, rgba(242, 219, 145, 0.18), transparent 42%),
-    rgba(122, 17, 25, 0.2);
+    radial-gradient(circle at 34% 20%, rgba(255, 248, 232, 0.16), transparent 38%),
+    linear-gradient(145deg, rgba(255, 248, 232, 0.08), rgba(122, 17, 25, 0.16)),
+    rgba(10, 6, 8, 0.42);
   color: #f2db91;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  box-shadow: 0 0 28px rgba(200, 164, 93, 0.12);
+  box-shadow:
+    0 0 0 8px rgba(10, 6, 8, 0.64),
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    0 0 28px rgba(200, 164, 93, 0.16),
+    0 0 34px rgba(122, 17, 25, 0.12);
+  backdrop-filter: blur(18px);
 }
 
-.process-step p {
-  margin-top: 18px;
-  color: rgba(232, 223, 207, 0.78);
-  font-size: 0.95rem;
-  line-height: 1.5;
+.process-copy {
+  margin-top: 24px;
+  max-width: 230px;
 }
 
-.process-step strong {
+.process-copy span {
+  color: rgba(216, 189, 122, 0.72);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.process-copy h3 {
+  margin-top: 8px;
   color: #fff8e8;
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.process-copy p {
+  margin-top: 10px;
+  color: rgba(232, 223, 207, 0.78);
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+@keyframes process-step-enter {
+  from {
+    filter: blur(7px);
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .registered-mark {
@@ -907,12 +952,14 @@ body {
 
   .process-track {
     grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 32px;
   }
 
   .process-track::before {
-    top: 28px;
-    bottom: 28px;
-    left: 34px;
+    top: 42px;
+    bottom: 42px;
+    left: 36px;
     right: auto;
     width: 1px;
     height: auto;
@@ -925,15 +972,27 @@ body {
   }
 
   .process-step {
-    min-height: 110px;
+    min-height: 92px;
+    flex-direction: row;
     align-items: flex-start;
-    padding-left: 86px;
+    gap: 22px;
+    padding: 0;
     text-align: left;
   }
 
   .process-circle {
-    position: absolute;
-    left: 16px;
-    top: 22px;
+    height: 72px;
+    width: 72px;
+    flex: 0 0 72px;
+    font-size: 1.05rem;
+    box-shadow:
+      0 0 0 6px rgba(10, 6, 8, 0.64),
+      0 12px 34px rgba(0, 0, 0, 0.24),
+      0 0 24px rgba(200, 164, 93, 0.14);
+  }
+
+  .process-copy {
+    margin-top: 2px;
+    max-width: none;
   }
 }

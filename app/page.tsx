@@ -186,22 +186,36 @@ export default function Home() {
 
 function SelectionProcess() {
   const phases = [
-    "Postúlate.",
-    "Confirmación.",
-    "Entrevista.",
-    "Eres parte del equipo.",
+    {
+      title: "Postúlate",
+      text: "Completa tu perfil y comparte tu motivación.",
+    },
+    {
+      title: "Confirmación",
+      text: "Recibimos tu solicitud y validamos tu información.",
+    },
+    {
+      title: "Entrevista",
+      text: "Si avanzas, te contactaremos para la siguiente fase.",
+    },
+    {
+      title: "Integración",
+      text: "En caso de aprobación, formarás parte del equipo.",
+    },
   ];
 
   return (
     <div className="selection-process mx-auto mb-20 max-w-7xl">
-      <p className="section-kicker">Proceso de selección</p>
+      <p className="section-kicker">PROCESO DE SELECCIÓN</p>
       <div className="process-track">
         {phases.map((phase, index) => (
-          <div className="process-step" key={phase}>
+          <div className="process-step" key={phase.title}>
             <span className="process-circle">{index + 1}</span>
-            <p>
-              <strong>Fase {index + 1}:</strong> {phase}
-            </p>
+            <div className="process-copy">
+              <span>Fase {index + 1}</span>
+              <h3>{phase.title}</h3>
+              <p>{phase.text}</p>
+            </div>
           </div>
         ))}
       </div>
