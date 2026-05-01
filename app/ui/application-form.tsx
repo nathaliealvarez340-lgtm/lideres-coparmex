@@ -25,6 +25,8 @@ const acceptedTypes = ["application/pdf", "image/png"];
 const minimumWords = 200;
 const pasteWarning =
   "Para asegurar una respuesta auténtica, este campo debe escribirse manualmente.";
+const successMessage =
+  "Gracias por dar el primer paso para formar parte de la Mesa de Líderes COPARMEX.\n\nTu información será revisada por la mesa directiva. En caso de que tu perfil sea aprobado y avance a la siguiente fase, nos pondremos en contacto contigo por correo.\n\nMientras tanto, sigue preparándote: las oportunidades importantes también reconocen a quienes llegan con intención, criterio y compromiso.";
 
 export function ApplicationForm({ coordinations }: ApplicationFormProps) {
   const editorRef = useRef<HTMLDivElement>(null);
@@ -181,9 +183,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
       });
       setFileName("");
       setStatus("success");
-      setMessage(
-        "Gracias por postularte a la Mesa de Líderes COPARMEX. Tus datos serán revisados por la mesa directiva. En caso de avanzar, recibirás información sobre la segunda fase del proceso.",
-      );
+      setMessage(successMessage);
     } catch (error) {
       setStatus("error");
       setMessage(
@@ -205,7 +205,11 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
           Postulación recibida
         </h3>
         <p className="mx-auto mt-5 max-w-2xl text-center text-lg leading-8 text-[#e8dfcf]/78">
-          {message}
+          {message.split("\n\n").map((paragraph) => (
+            <span className="mt-4 block first:mt-0" key={paragraph}>
+              {paragraph}
+            </span>
+          ))}
         </p>
       </div>
     );

@@ -16,8 +16,10 @@ export const metadata: Metadata = {
   title: "Mesa de Líderes COPARMEX",
   description:
     "Landing page de reclutamiento estudiantil para la Mesa de Líderes COPARMEX.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

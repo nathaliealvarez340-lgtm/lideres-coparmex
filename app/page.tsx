@@ -187,12 +187,14 @@ function MaiaTrustCopy() {
   return (
     <div className="maia-trust-copy">
       <p>
-        Landing desarrollada por MAIA para fortalecer procesos de convocatoria,
-        selección y gestión de talento joven.
+        Desarrollado por MAIA
+        <span className="registered-mark">®</span> para fortalecer procesos de
+        convocatoria, selección y gestión de talento joven.
       </p>
+      <p>Presentado por Genuino.</p>
       <p>
-        Tus datos serán tratados únicamente para fines de revisión de
-        candidatura.
+        La información proporcionada será utilizada exclusivamente para fines de
+        evaluación dentro del proceso de selección.
       </p>
     </div>
   );
