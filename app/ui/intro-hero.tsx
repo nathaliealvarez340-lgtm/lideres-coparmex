@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export function IntroHero() {
   const [count, setCount] = useState(5);
+  const isUnlocked = count === 0;
 
   useEffect(() => {
     if (count === 0) {
@@ -17,6 +18,55 @@ export function IntroHero() {
     return () => window.clearTimeout(timer);
   }, [count]);
 
+  useEffect(() => {
+    if (isUnlocked) {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+      return;
+    }
+
+    const preventScroll = (event: Event) => event.preventDefault();
+    const preventKeyboardScroll = (event: KeyboardEvent) => {
+      const blockedKeys = [
+        " ",
+        "ArrowDown",
+        "ArrowUp",
+        "End",
+        "Home",
+        "PageDown",
+        "PageUp",
+      ];
+
+      if (blockedKeys.includes(event.key)) {
+        event.preventDefault();
+      }
+    };
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+    window.scrollTo(0, 0);
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventKeyboardScroll);
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventKeyboardScroll);
+    };
+  }, [isUnlocked]);
+
+  function scrollToApplication() {
+    document
+      .getElementById("postulacion")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <section className="relative flex min-h-screen items-center px-6 py-24 sm:px-10 lg:px-14">
       <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-center xl:grid-cols-[minmax(0,1fr)_310px]">
@@ -24,7 +74,7 @@ export function IntroHero() {
           <div className="mb-8 flex items-center justify-center gap-4 lg:justify-start">
             <span className="h-px w-14 bg-gradient-to-r from-[#c8a45d] to-transparent" />
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d8bd7a]">
-              Convocatoria estudiantil
+              Convocatoria
             </p>
           </div>
 
@@ -38,17 +88,20 @@ export function IntroHero() {
             camino dentro del ecosistema empresarial.
           </p>
 
-          <div
-            className={`mt-11 transition duration-700 ${
-              count === 0
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0"
-            }`}
-          >
-            <a className="premium-button" href="#experiencia">
-              Postúlate ahora
-            </a>
-          </div>
+          {isUnlocked ? (
+            <div className="intro-unlock mt-11">
+              <button
+                className="premium-button"
+                onClick={scrollToApplication}
+                type="button"
+              >
+                Postúlate ahora
+              </button>
+              <p className="mt-5 text-xs font-medium uppercase tracking-[0.24em] text-[#e8dfcf]/58">
+                Desliza para continuar
+              </p>
+            </div>
+          ) : null}
         </div>
 
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ApplicationForm } from "./ui/application-form";
+import { CoordinationCarousel } from "./ui/coordination-carousel";
 import { IntroHero } from "./ui/intro-hero";
 
 const benefits = [
@@ -33,32 +34,32 @@ const coordinations = [
   {
     name: "Comunicación y Marketing",
     description:
-      "Narrativa, redes, identidad visual y posicionamiento de cada iniciativa.",
+      "Diseña la narrativa del capítulo, comunica iniciativas, fortalece la presencia digital y convierte cada actividad en una experiencia visible y memorable.",
   },
   {
     name: "Patrocinios",
     description:
-      "Relación con aliados, propuestas de valor y seguimiento comercial.",
+      "Construye relaciones con aliados, desarrolla propuestas de valor, da seguimiento comercial y ayuda a convertir conexiones en oportunidades reales.",
   },
   {
     name: "Administrativa",
     description:
-      "Control, documentación, presupuesto y orden interno para que todo avance.",
+      "Organiza documentación, acuerdos, presupuestos, registros y procesos internos para que la mesa opere con claridad, orden y continuidad.",
   },
   {
     name: "Logística",
     description:
-      "Planeación de experiencias, coordinación en sitio y ejecución impecable.",
+      "Planea experiencias, coordina recursos, tiempos, espacios y ejecución en sitio para que cada iniciativa funcione con precisión.",
   },
 ];
 
 const coordinationNames = coordinations.map((coordination) => coordination.name);
 
 const partnerLogos = [
-  { src: "/logos/coparmex-white.png", alt: "COPARMEX" },
-  { src: "/logos/tec-white.png", alt: "Tecnológico de Monterrey" },
-  { src: "/logos/genuino-white.png", alt: "Genuino" },
-  { src: "/logos/maia-white.png", alt: "Maia" },
+  { src: "/logos/coparmex-white.png", alt: "COPARMEX", className: "logo-coparmex" },
+  { src: "/logos/tec-white.png", alt: "Tecnológico de Monterrey", className: "logo-tec" },
+  { src: "/logos/genuino-white.png", alt: "Genuino", className: "logo-genuino" },
+  { src: "/logos/maia-white.png", alt: "Maia", className: "logo-maia" },
 ];
 
 export default function Home() {
@@ -131,28 +132,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                {coordinations.map((coordination) => (
-                  <article
-                    className="coordination-card"
-                    key={coordination.name}
-                  >
-                    <div className="h-10 w-10 rounded-full border border-[#c8a45d]/35 bg-[#c8a45d]/10" />
-                    <h3 className="mt-6 text-2xl font-semibold">
-                      {coordination.name}
-                    </h3>
-                    <p className="mt-4 leading-7 text-[#e8dfcf]/70">
-                      {coordination.description}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-16 flex justify-center">
-              <a className="premium-button" href="#postulacion">
-                Quiero postularme
-              </a>
+              <CoordinationCarousel coordinations={coordinations} />
             </div>
           </div>
         </section>
@@ -172,7 +152,8 @@ export default function Home() {
               claridad, compromiso y ganas de asumir responsabilidad real.
             </p>
             <div className="mt-10 h-px w-full bg-gradient-to-r from-[#c8a45d] via-[#7a1119] to-transparent" />
-            <LogoMarquee />
+            <LogoGrid />
+            <MaiaTrustCopy />
           </div>
 
           <div>
@@ -181,7 +162,8 @@ export default function Home() {
               <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-normal">
                 Tu siguiente rol empieza con una decisión.
               </h2>
-              <LogoMarquee />
+              <LogoGrid />
+              <MaiaTrustCopy />
             </div>
             <ApplicationForm coordinations={coordinationNames} />
           </div>
@@ -192,29 +174,34 @@ export default function Home() {
   );
 }
 
-function LogoMarquee() {
+function MaiaTrustCopy() {
   return (
-    <div className="logo-marquee mt-10" aria-label="Aliados de la convocatoria">
-      <div className="logo-marquee-track">
-        <LogoGroup />
-        <LogoGroup ariaHidden />
-      </div>
+    <div className="maia-trust-copy">
+      <p>
+        Landing desarrollada por MAIA para fortalecer procesos de convocatoria,
+        selección y gestión de talento joven.
+      </p>
+      <p>
+        Tus datos serán tratados únicamente para fines de revisión de
+        candidatura.
+      </p>
     </div>
   );
 }
 
-function LogoGroup({ ariaHidden = false }: { ariaHidden?: boolean }) {
+function LogoGrid() {
   return (
-    <div className="logo-marquee-group" aria-hidden={ariaHidden}>
+    <div className="logo-grid-panel mt-10" aria-label="Aliados de la convocatoria">
       {partnerLogos.map((logo) => (
-        <Image
-          alt={ariaHidden ? "" : logo.alt}
-          className="partner-logo"
-          height={80}
-          key={`${logo.src}-${ariaHidden ? "copy" : "main"}`}
-          src={logo.src}
-          width={240}
-        />
+        <div className="logo-cell" key={logo.src}>
+          <Image
+            alt={logo.alt}
+            className={`partner-logo ${logo.className}`}
+            height={80}
+            src={logo.src}
+            width={240}
+          />
+        </div>
       ))}
     </div>
   );

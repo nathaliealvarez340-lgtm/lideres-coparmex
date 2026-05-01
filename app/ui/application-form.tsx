@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, ReactNode, useRef, useState } from "react";
 
 type ApplicationFormProps = {
   coordinations: string[];
@@ -9,19 +9,43 @@ type ApplicationFormProps = {
 type FormStatus = "idle" | "sending" | "success" | "error";
 
 const acceptedTypes = ["application/pdf", "image/png"];
+const minimumWords = 200;
 
 export function ApplicationForm({ coordinations }: ApplicationFormProps) {
+  const editorRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState("");
+  const [whyText, setWhyText] = useState("");
+
+  const wordCount = countWords(whyText);
+
+  function runCommand(command: string, value?: string) {
+    editorRef.current?.focus();
+    document.execCommand(command, false, value);
+    syncEditorText();
+  }
+
+  function syncEditorText() {
+    setWhyText(editorRef.current?.innerText ?? "");
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("sending");
     setMessage("");
 
+    const cleanWhy = normalizeText(whyText);
+
+    if (countWords(cleanWhy) < minimumWords) {
+      setStatus("error");
+      setMessage("Tu respuesta debe tener al menos 200 palabras reales.");
+      return;
+    }
+
     const form = event.currentTarget;
     const formData = new FormData(form);
+    formData.set("why", cleanWhy);
     const file = formData.get("cv");
 
     if (!(file instanceof File) || file.size === 0) {
@@ -55,6 +79,10 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
       }
 
       form.reset();
+      if (editorRef.current) {
+        editorRef.current.innerHTML = "";
+      }
+      setWhyText("");
       setFileName("");
       setStatus("success");
       setMessage(
@@ -111,7 +139,12 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
 
         <label className="field-shell sm:col-span-2">
           <span>Coordinación operativa a la que deseas postularte</span>
-          <select className="field-control" name="coordination" required defaultValue="">
+          <select
+            className="field-control"
+            name="coordination"
+            required
+            defaultValue=""
+          >
             <option value="" disabled>
               Selecciona una coordinación
             </option>
@@ -123,16 +156,96 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
           </select>
         </label>
 
-        <label className="field-shell sm:col-span-2">
+        <div className="field-shell sm:col-span-2">
           <span>¿Por qué deberíamos considerarte?</span>
-          <textarea
-            className="field-control min-h-40 resize-y py-4 leading-7"
-            name="why"
-            minLength={20}
-            required
-            placeholder="Habla de tu criterio, experiencia, motivación y lo que puedes aportar a la mesa."
-          />
-        </label>
+          <div className="rich-editor-shell">
+            <div className="editor-toolbar" aria-label="Herramientas del editor">
+              <ToolbarButton label="Negrita" onClick={() => runCommand("bold")}>
+                B
+              </ToolbarButton>
+              <ToolbarButton label="Cursiva" onClick={() => runCommand("italic")}>
+                I
+              </ToolbarButton>
+              <ToolbarButton
+                label="Subrayado"
+                onClick={() => runCommand("underline")}
+              >
+                U
+              </ToolbarButton>
+              <ToolbarButton
+                label="Alinear izquierda"
+                onClick={() => runCommand("justifyLeft")}
+              >
+                L
+              </ToolbarButton>
+              <ToolbarButton
+                label="Alinear centro"
+                onClick={() => runCommand("justifyCenter")}
+              >
+                C
+              </ToolbarButton>
+              <ToolbarButton
+                label="Alinear derecha"
+                onClick={() => runCommand("justifyRight")}
+              >
+                R
+              </ToolbarButton>
+              <ToolbarButton
+                label="Lista con viñetas"
+                onClick={() => runCommand("insertUnorderedList")}
+              >
+                •
+              </ToolbarButton>
+              <ToolbarButton
+                label="Lista numerada"
+                onClick={() => runCommand("insertOrderedList")}
+              >
+                1.
+              </ToolbarButton>
+              <select
+                aria-label="Selector de tamaño"
+                className="toolbar-select"
+                defaultValue="3"
+                onChange={(event) => runCommand("fontSize", event.target.value)}
+                title="Tamaño de texto"
+              >
+                <option value="2">Pequeño</option>
+                <option value="3">Normal</option>
+                <option value="5">Grande</option>
+              </select>
+              <select
+                aria-label="Selector de fuente"
+                className="toolbar-select"
+                defaultValue="Inter"
+                onChange={(event) => runCommand("fontName", event.target.value)}
+                title="Tipo de letra"
+              >
+                <option value="Inter">Inter</option>
+                <option value="Sora">Sora</option>
+                <option value="Manrope">Manrope</option>
+              </select>
+            </div>
+            <div
+              aria-label="Respuesta de postulación"
+              className="rich-editor"
+              contentEditable
+              data-placeholder="Habla de tu criterio, experiencia, motivación y lo que puedes aportar a la mesa."
+              onInput={syncEditorText}
+              onPaste={(event) => {
+                event.preventDefault();
+                const text = event.clipboardData.getData("text/plain");
+                document.execCommand("insertText", false, text);
+                syncEditorText();
+              }}
+              ref={editorRef}
+              role="textbox"
+              suppressContentEditableWarning
+            />
+          </div>
+          <p className="text-sm text-[#e8dfcf]/62">
+            {wordCount} / {minimumWords} palabras mínimas
+          </p>
+        </div>
 
         <label className="dropzone sm:col-span-2">
           <input
@@ -146,26 +259,57 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
             }
           />
           <span className="dropzone-icon" aria-hidden="true" />
-          <span className="text-base font-semibold text-[#fff8e8]">
+          <span className="min-w-0 flex-1 text-sm font-semibold text-[#fff8e8] sm:text-base">
             {fileName || "Sube tu CV PDF o PNG"}
           </span>
-          <span className="text-sm leading-6 text-[#e8dfcf]/62">
-            Arrastra visualmente tu documento aquí o haz clic para elegirlo.
-            Máximo 5 MB.
+          <span className="hidden text-sm leading-6 text-[#e8dfcf]/62 sm:block">
+            Máximo 5 MB
           </span>
         </label>
       </div>
 
-      <button className="premium-button mt-8 w-full" disabled={status === "sending"} type="submit">
+      <button
+        className="premium-button mt-8 w-full"
+        disabled={status === "sending"}
+        type="submit"
+      >
         {status === "sending" ? "Enviando..." : "Enviar postulación"}
       </button>
 
       {message ? (
-        <p className="mt-5 rounded-2xl border border-[#da3a3f]/35 bg-[#7a1119]/25 px-5 py-4 text-sm text-[#ffd7d7]" role="status">
+        <p
+          className="mt-5 rounded-2xl border border-[#da3a3f]/35 bg-[#7a1119]/25 px-5 py-4 text-sm text-[#ffd7d7]"
+          role="status"
+        >
           {message}
         </p>
       ) : null}
     </form>
+  );
+}
+
+function ToolbarButton({
+  children,
+  label,
+  onClick,
+}: {
+  children: ReactNode;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      aria-label={label}
+      className="toolbar-button"
+      data-tooltip={label}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        onClick();
+      }}
+      type="button"
+    >
+      {children}
+    </button>
   );
 }
 
@@ -183,5 +327,16 @@ function Field({
       <span>{label}</span>
       <input className="field-control" name={name} required type={type} />
     </label>
+  );
+}
+
+function normalizeText(text: string) {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function countWords(text: string) {
+  return (
+    normalizeText(text).match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu)
+      ?.length ?? 0
   );
 }
