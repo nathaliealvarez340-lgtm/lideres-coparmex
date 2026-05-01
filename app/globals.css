@@ -138,7 +138,9 @@ body {
   background:
     linear-gradient(145deg, rgba(255, 248, 232, 0.1), rgba(255, 248, 232, 0.028)),
     rgba(10, 6, 8, 0.54);
-  box-shadow: 0 24px 86px rgba(0, 0, 0, 0.34);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.45),
+    0 0 42px rgba(122, 17, 25, 0.16);
   backdrop-filter: blur(20px);
 }
 
@@ -219,11 +221,15 @@ body {
 
 .coordination-feature-card {
   position: relative;
+  display: flex;
   overflow: hidden;
   min-height: 315px;
   width: 100%;
   flex: 1;
   flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(255, 248, 232, 0.14);
   border-radius: 28px;
   background:
@@ -231,12 +237,14 @@ body {
     radial-gradient(circle at 100% 100%, rgba(122, 17, 25, 0.28), transparent 38%),
     linear-gradient(145deg, rgba(255, 248, 232, 0.12), rgba(255, 248, 232, 0.035)),
     rgba(10, 6, 8, 0.58);
-  box-shadow: 0 28px 94px rgba(0, 0, 0, 0.38);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.45),
+    0 0 42px rgba(122, 17, 25, 0.16);
   backdrop-filter: blur(22px);
   color: inherit;
   cursor: pointer;
   padding: 28px;
-  text-align: left;
+  text-align: center;
   transition:
     transform 220ms ease,
     border-color 220ms ease,
@@ -247,8 +255,9 @@ body {
 .coordination-feature-card:hover {
   border-color: rgba(200, 164, 93, 0.36);
   box-shadow:
-    0 34px 104px rgba(0, 0, 0, 0.42),
-    0 0 42px rgba(122, 17, 25, 0.18);
+    0 34px 104px rgba(0, 0, 0, 0.5),
+    0 0 48px rgba(122, 17, 25, 0.22),
+    0 0 24px rgba(200, 164, 93, 0.08);
   transform: translateY(-3px);
 }
 
@@ -265,40 +274,32 @@ body {
   transform: translateY(-50%);
 }
 
-.coordination-feature-topline,
 .coordination-feature-card h3,
 .coordination-description {
   position: relative;
   z-index: 2;
 }
 
-.coordination-feature-topline {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.coordination-number {
-  color: rgba(216, 189, 122, 0.84);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1;
-}
-
 .coordination-feature-card h3 {
-  margin-top: 58px;
+  display: inline-flex;
+  max-width: min(100%, 780px);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42em;
+  margin: 0;
   color: #fff8e8;
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 850;
-  letter-spacing: 0.02em;
-  line-height: 1.03;
+  font-size: clamp(2.65rem, 5vw, 4.55rem);
+  font-weight: 900;
+  letter-spacing: 0.015em;
+  line-height: 0.95;
+  text-align: center;
+  text-wrap: balance;
 }
 
 .coordination-description {
   display: grid;
+  width: min(100%, 720px);
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
@@ -312,12 +313,36 @@ body {
   color: rgba(232, 223, 207, 0.76);
   font-size: 0.98rem;
   line-height: 1.65;
+  text-align: center;
 }
 
 .coordination-feature-card.is-expanded .coordination-description {
   grid-template-rows: 1fr;
   margin-top: 22px;
   opacity: 1;
+}
+
+.coordination-more-indicator {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  z-index: 3;
+  color: rgba(216, 189, 122, 0.78);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+  opacity: 0.7;
+}
+
+.coordination-feature-card:hover .coordination-more-indicator {
+  color: #f2db91;
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .coordination-controls {
@@ -425,6 +450,81 @@ body {
 
 .maia-trust-copy p + p {
   margin-top: 6px;
+}
+
+.selection-process {
+  animation: feature-enter 560ms ease both;
+}
+
+.process-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.process-track::before {
+  position: absolute;
+  top: 34px;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(122, 17, 25, 0.15),
+    rgba(200, 164, 93, 0.42),
+    rgba(122, 17, 25, 0.15)
+  );
+  content: "";
+}
+
+.process-step {
+  position: relative;
+  display: flex;
+  min-height: 154px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid rgba(255, 248, 232, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 248, 232, 0.08), rgba(255, 248, 232, 0.025)),
+    rgba(10, 6, 8, 0.42);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.32),
+    0 0 30px rgba(122, 17, 25, 0.1);
+  backdrop-filter: blur(18px);
+  padding: 22px 16px 18px;
+  text-align: center;
+}
+
+.process-circle {
+  display: grid;
+  height: 68px;
+  width: 68px;
+  place-items: center;
+  border: 1px solid rgba(200, 164, 93, 0.38);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(242, 219, 145, 0.18), transparent 42%),
+    rgba(122, 17, 25, 0.2);
+  color: #f2db91;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 1.1rem;
+  font-weight: 800;
+  box-shadow: 0 0 28px rgba(200, 164, 93, 0.12);
+}
+
+.process-step p {
+  margin-top: 18px;
+  color: rgba(232, 223, 207, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.process-step strong {
+  color: #fff8e8;
 }
 
 .registered-mark {
@@ -791,5 +891,49 @@ body {
 
   .logo-grid-panel {
     gap: 28px 42px;
+  }
+}
+
+@media (max-width: 767px) {
+  .coordination-feature-card {
+    min-height: 280px;
+    padding: 24px 20px;
+  }
+
+  .coordination-feature-card h3 {
+    font-size: clamp(1.9rem, 10vw, 2.55rem);
+    line-height: 1;
+  }
+
+  .process-track {
+    grid-template-columns: 1fr;
+  }
+
+  .process-track::before {
+    top: 28px;
+    bottom: 28px;
+    left: 34px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(
+      180deg,
+      rgba(122, 17, 25, 0.15),
+      rgba(200, 164, 93, 0.42),
+      rgba(122, 17, 25, 0.15)
+    );
+  }
+
+  .process-step {
+    min-height: 110px;
+    align-items: flex-start;
+    padding-left: 86px;
+    text-align: left;
+  }
+
+  .process-circle {
+    position: absolute;
+    left: 16px;
+    top: 22px;
   }
 }

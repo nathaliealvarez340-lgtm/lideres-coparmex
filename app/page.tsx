@@ -98,7 +98,7 @@ export default function Home() {
               <div>
                 <p className="section-kicker">La experiencia</p>
                 <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-normal sm:text-6xl">
-                  Un espacio selectivo para liderar antes de graduarte.
+                  Un espacio selectivo para liderar con criterio.
                 </h2>
               </div>
               <div className="glass-panel p-7 sm:p-9">
@@ -147,9 +147,10 @@ export default function Home() {
         </section>
 
         <section
-          className="relative px-6 pb-24 pt-10 sm:px-10 lg:px-14 lg:pb-32"
+          className="relative px-6 pb-24 pt-24 sm:px-10 lg:px-14 lg:pb-32 lg:pt-36"
           id="postulacion"
         >
+          <SelectionProcess />
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div className="sticky top-10 hidden lg:block">
               <p className="section-kicker">Postulación</p>
@@ -180,6 +181,31 @@ export default function Home() {
         </section>
       </div>
     </main>
+  );
+}
+
+function SelectionProcess() {
+  const phases = [
+    "Postúlate.",
+    "Confirmación.",
+    "Entrevista.",
+    "Eres parte del equipo.",
+  ];
+
+  return (
+    <div className="selection-process mx-auto mb-20 max-w-7xl">
+      <p className="section-kicker">Proceso de selección</p>
+      <div className="process-track">
+        {phases.map((phase, index) => (
+          <div className="process-step" key={phase}>
+            <span className="process-circle">{index + 1}</span>
+            <p>
+              <strong>Fase {index + 1}:</strong> {phase}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

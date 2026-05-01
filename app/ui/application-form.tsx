@@ -22,7 +22,7 @@ type WritingSignals = {
 };
 
 const acceptedTypes = ["application/pdf", "image/png"];
-const minimumWords = 200;
+const minimumWords = 120;
 const pasteWarning =
   "Para asegurar una respuesta auténtica, este campo debe escribirse manualmente.";
 const successMessage =
@@ -104,7 +104,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
 
     if (countWords(cleanWhy) < minimumWords) {
       setStatus("error");
-      setMessage("Tu respuesta debe tener al menos 200 palabras reales.");
+      setMessage("Tu respuesta debe tener al menos 120 palabras reales.");
       return;
     }
 
@@ -469,7 +469,7 @@ function AuthenticityPanel({
           {isReady ? authenticity.status : "Filtro de autenticidad en espera"}
         </span>
         <span className="authenticity-score">
-          {isReady ? `${authenticity.score}/100 riesgo` : "200 palabras mín."}
+          {isReady ? `${authenticity.score}/100 riesgo` : "120 palabras mín."}
         </span>
       </div>
       {isReady ? (

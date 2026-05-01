@@ -24,7 +24,7 @@ export function CoordinationCarousel({
     const interval = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % coordinations.length);
       setIsExpanded(false);
-    }, 4000);
+    }, 6500);
 
     return () => window.clearInterval(interval);
   }, [coordinations.length]);
@@ -61,12 +61,6 @@ export function CoordinationCarousel({
           {activeNumber}
         </span>
 
-        <div className="coordination-feature-topline">
-          <span className="coordination-number" aria-hidden="true">
-            {activeNumber}
-          </span>
-        </div>
-
         <h3>
           <span aria-hidden="true">{active.emoji}</span>{" "}
           {active.name.toUpperCase()}
@@ -75,15 +69,19 @@ export function CoordinationCarousel({
         <div className="coordination-description" aria-hidden={!isExpanded}>
           <p>{active.description}</p>
         </div>
+
+        <span className="coordination-more-indicator">
+          {isExpanded ? "- ver menos" : "+ ver mas"}
+        </span>
       </button>
 
       <div className="coordination-controls">
         <button
-          aria-label="Coordinación anterior"
+          aria-label="Coordinacion anterior"
           onClick={goToPrevious}
           type="button"
         >
-          ‹
+          {"<"}
         </button>
 
         <div className="coordination-dots" aria-label="Indicadores">
@@ -100,11 +98,11 @@ export function CoordinationCarousel({
         </div>
 
         <button
-          aria-label="Siguiente coordinación"
+          aria-label="Siguiente coordinacion"
           onClick={goToNext}
           type="button"
         >
-          ›
+          {">"}
         </button>
       </div>
     </div>
