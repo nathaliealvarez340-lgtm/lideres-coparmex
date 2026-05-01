@@ -762,7 +762,7 @@ body {
   pointer-events: none;
 }
 
-.authenticity-notice {
+.paste-notice {
   border: 1px solid rgba(200, 164, 93, 0.2);
   border-radius: 16px;
   background: rgba(200, 164, 93, 0.08);
@@ -770,70 +770,6 @@ body {
   font-size: 0.84rem;
   line-height: 1.55;
   padding: 10px 12px;
-}
-
-.authenticity-panel {
-  border: 1px solid rgba(255, 248, 232, 0.12);
-  border-radius: 18px;
-  background:
-    linear-gradient(145deg, rgba(255, 248, 232, 0.07), rgba(255, 248, 232, 0.025)),
-    rgba(3, 2, 4, 0.46);
-  padding: 14px;
-}
-
-.authenticity-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.authenticity-badge {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid rgba(255, 248, 232, 0.14);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.045);
-  color: #fff8e8;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 7px 10px;
-}
-
-.authenticity-score {
-  color: rgba(232, 223, 207, 0.62);
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.76rem;
-}
-
-.authenticity-detail {
-  margin-top: 10px;
-  color: rgba(232, 223, 207, 0.76);
-  font-size: 0.86rem;
-  line-height: 1.6;
-}
-
-.authenticity-disclaimer {
-  margin-top: 8px;
-  color: rgba(232, 223, 207, 0.56);
-  font-size: 0.76rem;
-  line-height: 1.55;
-}
-
-.authenticity-panel.probable .authenticity-badge {
-  border-color: rgba(69, 211, 151, 0.28);
-  background: rgba(69, 211, 151, 0.1);
-}
-
-.authenticity-panel.review .authenticity-badge {
-  border-color: rgba(200, 164, 93, 0.32);
-  background: rgba(200, 164, 93, 0.1);
-}
-
-.authenticity-panel.risk .authenticity-badge {
-  border-color: rgba(218, 58, 63, 0.34);
-  background: rgba(122, 17, 25, 0.28);
 }
 
 .dropzone {
