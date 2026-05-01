@@ -130,21 +130,19 @@ body {
   text-transform: uppercase;
 }
 
-.coordination-carousel {
+.carousel-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: flex-start;
   gap: 22px;
   width: 100%;
-  max-width: 460px;
-  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .coordination-feature-card {
   position: relative;
   overflow: hidden;
-  width: min(460px, 100%);
   min-height: 315px;
   border: 1px solid rgba(255, 248, 232, 0.14);
   border-radius: 28px;
@@ -164,6 +162,12 @@ body {
     border-color 220ms ease,
     box-shadow 220ms ease;
   animation: card-enter 420ms ease both;
+}
+
+.carousel-card {
+  width: 100%;
+  flex: 1;
+  flex-shrink: 0;
 }
 
 .coordination-feature-card:hover {
@@ -235,6 +239,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 16px;
+  width: 100%;
 }
 
 .coordination-controls > button {

@@ -51,10 +51,12 @@ export function CoordinationCarousel({
   }
 
   return (
-    <div className="coordination-carousel" aria-label="Coordinaciones">
+    <div className="carousel-wrapper" aria-label="Coordinaciones">
       <button
         aria-expanded={isExpanded}
-        className={`coordination-feature-card ${isExpanded ? "is-expanded" : ""}`}
+        className={`carousel-card coordination-feature-card ${
+          isExpanded ? "is-expanded" : ""
+        }`}
         key={active.name}
         onClick={() => setIsExpanded((current) => !current)}
         type="button"
