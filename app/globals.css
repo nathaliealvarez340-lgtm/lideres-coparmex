@@ -194,12 +194,7 @@ body {
 }
 
 .coordination-icon svg {
-  height: 68px;
-  width: 68px;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.1;
+  display: block;
 }
 
 .coordination-feature-card h3 {
@@ -291,54 +286,37 @@ body {
   display: grid;
   width: fit-content;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  border: 1px solid rgba(255, 248, 232, 0.12);
-  border-radius: 28px;
-  background:
-    linear-gradient(145deg, rgba(255, 248, 232, 0.07), rgba(255, 248, 232, 0.025)),
-    rgba(10, 6, 8, 0.42);
-  backdrop-filter: blur(18px);
-  padding: 14px;
-}
-
-.logo-cell {
-  display: flex;
-  width: 132px;
-  height: 82px;
+  gap: 24px 34px;
   align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.045);
-  padding: 16px;
-  animation: logo-float 4.8s ease-in-out infinite;
-}
-
-.logo-cell:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.logo-cell:nth-child(3) {
-  animation-delay: 0.8s;
-}
-
-.logo-cell:nth-child(4) {
-  animation-delay: 1.2s;
+  justify-items: center;
 }
 
 .partner-logo {
   width: auto;
-  max-width: 120px;
+  max-width: 130px;
   max-height: 42px;
   object-fit: contain;
-  opacity: 0.7;
+  opacity: 0.75;
   filter: brightness(1.2);
   transition:
     opacity 180ms ease,
     transform 180ms ease;
+  animation: logo-float 4.8s ease-in-out infinite;
 }
 
-.logo-cell:hover .partner-logo {
+.partner-logo:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.partner-logo:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.partner-logo:nth-child(4) {
+  animation-delay: 1.2s;
+}
+
+.partner-logo:hover {
   opacity: 1;
   transform: scale(1.04);
 }
@@ -395,13 +373,21 @@ body {
 .form-panel,
 .success-panel {
   position: relative;
-  overflow: hidden;
   border: 1px solid rgba(255, 248, 232, 0.12);
   background:
     linear-gradient(145deg, rgba(255, 248, 232, 0.1), rgba(255, 248, 232, 0.028)),
     rgba(10, 6, 8, 0.54);
   box-shadow: 0 24px 86px rgba(0, 0, 0, 0.34);
   backdrop-filter: blur(20px);
+}
+
+.feature-card,
+.success-panel {
+  overflow: hidden;
+}
+
+.form-panel {
+  overflow: visible;
 }
 
 .feature-card::before,
@@ -474,7 +460,7 @@ body {
 }
 
 .rich-editor-shell {
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(255, 248, 232, 0.13);
   border-radius: 22px;
   background: rgba(3, 2, 4, 0.54);
@@ -493,8 +479,13 @@ body {
 }
 
 .toolbar-button,
+.toolbar-select-wrap,
 .toolbar-select {
   min-height: 34px;
+}
+
+.toolbar-button,
+.toolbar-select {
   border: 1px solid rgba(255, 248, 232, 0.12);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.05);
@@ -508,33 +499,42 @@ body {
     transform 160ms ease;
 }
 
-.toolbar-button {
+.toolbar-button,
+.toolbar-select-wrap {
   display: grid;
   position: relative;
-  width: 34px;
   place-items: center;
 }
 
-.toolbar-button::after {
+.toolbar-button {
+  width: 34px;
+}
+
+.toolbar-select-wrap {
+  width: max-content;
+}
+
+.toolbar-button::after,
+.toolbar-select-wrap::after {
   position: absolute;
-  bottom: calc(100% + 9px);
+  bottom: calc(100% + 8px);
   left: 50%;
-  z-index: 5;
+  z-index: 1000;
   width: max-content;
   max-width: 180px;
-  border: 1px solid rgba(255, 248, 232, 0.14);
-  border-radius: 10px;
-  background: rgba(5, 3, 5, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: #111;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
-  color: #fff8e8;
+  color: #fff;
   content: attr(data-tooltip);
-  font-size: 0.72rem;
+  font-size: 11px;
   font-weight: 600;
   line-height: 1;
   opacity: 0;
-  padding: 8px 10px;
+  padding: 6px 8px;
   pointer-events: none;
-  transform: translate(-50%, 6px);
+  transform: translateX(-50%);
   transition:
     opacity 150ms ease,
     transform 150ms ease;
@@ -542,9 +542,10 @@ body {
 }
 
 .toolbar-button:hover::after,
-.toolbar-button:focus-visible::after {
+.toolbar-button:focus-visible::after,
+.toolbar-select-wrap:hover::after,
+.toolbar-select-wrap:focus-within::after {
   opacity: 1;
-  transform: translate(-50%, 0);
 }
 
 .toolbar-select {
@@ -571,6 +572,7 @@ body {
 }
 
 .toolbar-button:hover,
+.toolbar-select-wrap:hover .toolbar-select,
 .toolbar-select:hover {
   border-color: rgba(200, 164, 93, 0.42);
   background: rgba(255, 255, 255, 0.085);
@@ -598,6 +600,80 @@ body {
   color: rgba(232, 223, 207, 0.38);
   content: attr(data-placeholder);
   pointer-events: none;
+}
+
+.authenticity-notice {
+  border: 1px solid rgba(200, 164, 93, 0.2);
+  border-radius: 16px;
+  background: rgba(200, 164, 93, 0.08);
+  color: rgba(255, 248, 232, 0.82);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  padding: 10px 12px;
+}
+
+.authenticity-panel {
+  border: 1px solid rgba(255, 248, 232, 0.12);
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, rgba(255, 248, 232, 0.07), rgba(255, 248, 232, 0.025)),
+    rgba(3, 2, 4, 0.46);
+  padding: 14px;
+}
+
+.authenticity-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.authenticity-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 248, 232, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: #fff8e8;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 7px 10px;
+}
+
+.authenticity-score {
+  color: rgba(232, 223, 207, 0.62);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.76rem;
+}
+
+.authenticity-detail {
+  margin-top: 10px;
+  color: rgba(232, 223, 207, 0.76);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.authenticity-disclaimer {
+  margin-top: 8px;
+  color: rgba(232, 223, 207, 0.56);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.authenticity-panel.probable .authenticity-badge {
+  border-color: rgba(69, 211, 151, 0.28);
+  background: rgba(69, 211, 151, 0.1);
+}
+
+.authenticity-panel.review .authenticity-badge {
+  border-color: rgba(200, 164, 93, 0.32);
+  background: rgba(200, 164, 93, 0.1);
+}
+
+.authenticity-panel.risk .authenticity-badge {
+  border-color: rgba(218, 58, 63, 0.34);
+  background: rgba(122, 17, 25, 0.28);
 }
 
 .dropzone {
@@ -675,8 +751,7 @@ body {
     min-height: 180px;
   }
 
-  .logo-cell {
-    width: 150px;
-    height: 90px;
+  .logo-grid-panel {
+    gap: 28px 42px;
   }
 }

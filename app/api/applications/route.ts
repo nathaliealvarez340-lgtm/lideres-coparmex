@@ -26,6 +26,23 @@ export async function POST(request: Request) {
     ]),
   );
   const cv = formData.get("cv");
+  const authenticity = {
+    result: String(formData.get("authenticityResult") ?? "No enviado").trim(),
+    score: String(formData.get("authenticityScore") ?? "No enviado").trim(),
+    writingTime: String(
+      formData.get("authenticityWritingTime") ?? "No enviado",
+    ).trim(),
+    pasteAttempts: String(
+      formData.get("authenticityPasteAttempts") ?? "No enviado",
+    ).trim(),
+    typingSpeed: String(
+      formData.get("authenticityTypingSpeed") ?? "No enviado",
+    ).trim(),
+    warning: String(
+      formData.get("authenticityWarning") ??
+        "Este resultado es orientativo y debe revisarse manualmente.",
+    ).trim(),
+  };
 
   const missingField = requiredFields.find((field) => !values[field]);
 
@@ -101,7 +118,7 @@ export async function POST(request: Request) {
       to: ["nathaliealvarez340@gmail.com"],
       reply_to: values.email,
       subject: `Nueva postulación - ${values.fullName}`,
-      html: buildEmailHtml(values),
+      html: buildEmailHtml(values, authenticity),
       attachments: [
         {
           filename: cv.name || "cv-postulante",
@@ -132,7 +149,10 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function buildEmailHtml(values: Record<string, string>) {
+function buildEmailHtml(
+  values: Record<string, string>,
+  authenticity: Record<string, string>,
+) {
   return `
     <div style="font-family: Arial, sans-serif; color: #111; line-height: 1.6;">
       <h1>Nueva postulación a la Mesa de Líderes COPARMEX</h1>
@@ -143,6 +163,14 @@ function buildEmailHtml(values: Record<string, string>) {
       <p><strong>Coordinación:</strong> ${escapeHtml(values.coordination)}</p>
       <p><strong>¿Por qué deberían considerarle?</strong></p>
       <p>${escapeHtml(values.why).replace(/\n/g, "<br />")}</p>
+      <hr style="border: 0; border-top: 1px solid #ddd; margin: 24px 0;" />
+      <h2>Filtro de autenticidad</h2>
+      <p><strong>Resultado:</strong> ${escapeHtml(authenticity.result)}</p>
+      <p><strong>Tiempo de escritura:</strong> ${escapeHtml(authenticity.writingTime)}</p>
+      <p><strong>Intentos de pegado:</strong> ${escapeHtml(authenticity.pasteAttempts)}</p>
+      <p><strong>Velocidad aproximada:</strong> ${escapeHtml(authenticity.typingSpeed)}</p>
+      <p><strong>Score de riesgo:</strong> ${escapeHtml(authenticity.score)}</p>
+      <p><strong>Advertencia:</strong> ${escapeHtml(authenticity.warning)}</p>
     </div>
   `;
 }

@@ -193,15 +193,14 @@ function LogoGrid() {
   return (
     <div className="logo-grid-panel mt-10" aria-label="Aliados de la convocatoria">
       {partnerLogos.map((logo) => (
-        <div className="logo-cell" key={logo.src}>
-          <Image
-            alt={logo.alt}
-            className={`partner-logo ${logo.className}`}
-            height={80}
-            src={logo.src}
-            width={240}
-          />
-        </div>
+        <Image
+          alt={logo.alt}
+          className={`partner-logo ${logo.className}`}
+          height={80}
+          key={logo.src}
+          src={logo.src}
+          width={240}
+        />
       ))}
     </div>
   );

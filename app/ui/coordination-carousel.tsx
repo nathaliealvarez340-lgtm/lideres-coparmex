@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ClipboardList, Handshake, Megaphone, Route } from "lucide-react";
 
 type Coordination = {
   name: string;
@@ -93,52 +94,11 @@ export function CoordinationCarousel({
 
 function Icon({ index }: { index: number }) {
   const icons = [
-    <MegaphoneIcon key="marketing" />,
-    <HandshakeIcon key="sponsor" />,
-    <ClipboardIcon key="admin" />,
-    <RouteIcon key="logistics" />,
+    <Megaphone key="marketing" size={34} strokeWidth={1.7} />,
+    <Handshake key="sponsor" size={34} strokeWidth={1.7} />,
+    <ClipboardList key="admin" size={34} strokeWidth={1.7} />,
+    <Route key="logistics" size={34} strokeWidth={1.7} />,
   ];
 
   return icons[index];
-}
-
-function MegaphoneIcon() {
-  return (
-    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 25h7l17 9V14l-17 9H9v2Z" />
-      <path d="M16 25v10c0 2 1.5 4 3.6 4H23" />
-      <path d="M37 19c2 1.2 3 3 3 5s-1 3.8-3 5" />
-    </svg>
-  );
-}
-
-function HandshakeIcon() {
-  return (
-    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-      <path d="m18 29 5 5c1.4 1.4 3.6 1.4 5 0l2-2" />
-      <path d="m28 21 5 5 2-2c2-2 2-5 0-7l-3-3-7 7" />
-      <path d="m20 22-5 5-2-2c-2-2-2-5 0-7l3-3 5 5" />
-      <path d="M21 20h7" />
-    </svg>
-  );
-}
-
-function ClipboardIcon() {
-  return (
-    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17 10h14l2 5H15l2-5Z" />
-      <path d="M15 14h-3v26h24V14h-3" />
-      <path d="m18 27 4 4 8-9" />
-    </svg>
-  );
-}
-
-function RouteIcon() {
-  return (
-    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 14a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" />
-      <path d="M33 24a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" />
-      <path d="M15 24v2c0 4 3 6 7 6h6" />
-    </svg>
-  );
 }
