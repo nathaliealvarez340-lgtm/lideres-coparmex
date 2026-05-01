@@ -5,24 +5,28 @@ import { IntroHero } from "./ui/intro-hero";
 
 const benefits = [
   {
+    emoji: "🎯",
     metric: "01",
     title: "Dirección ejecutiva",
     description:
       "Trabaja con objetivos, responsables y entregables claros, como en un comité profesional.",
   },
   {
+    emoji: "🌐",
     metric: "02",
     title: "Red estratégica",
     description:
       "Conecta con perfiles empresariales, aliados y estudiantes que están construyendo trayectoria.",
   },
   {
+    emoji: "🚀",
     metric: "03",
     title: "Portafolio real",
     description:
       "Suma experiencia visible en eventos, comunicación, patrocinios y operación institucional.",
   },
   {
+    emoji: "🧩",
     metric: "04",
     title: "Criterio de liderazgo",
     description:
@@ -32,21 +36,25 @@ const benefits = [
 
 const coordinations = [
   {
+    emoji: "📣",
     name: "Comunicación y Marketing",
     description:
       "Diseña la narrativa del capítulo, comunica iniciativas, fortalece la presencia digital y convierte cada actividad en una experiencia visible y memorable.",
   },
   {
+    emoji: "🪙",
     name: "Patrocinios",
     description:
       "Construye relaciones con aliados, desarrolla propuestas de valor, da seguimiento comercial y ayuda a convertir conexiones en oportunidades reales.",
   },
   {
+    emoji: "🗂️",
     name: "Administrativa",
     description:
       "Organiza documentación, acuerdos, presupuestos, registros y procesos internos para que la mesa opere con claridad, orden y continuidad.",
   },
   {
+    emoji: "🛠️",
     name: "Logística",
     description:
       "Planea experiencias, coordina recursos, tiempos, espacios y ejecución en sitio para que cada iniciativa funcione con precisión.",
@@ -110,8 +118,9 @@ export default function Home() {
                   <span className="font-mono text-sm text-[#c8a45d]">
                     {benefit.metric}
                   </span>
-                  <h3 className="mt-8 text-2xl font-semibold text-[#fff8e8]">
-                    {benefit.title}
+                  <h3>
+                    <span aria-hidden="true">{benefit.emoji}</span>{" "}
+                    {benefit.title.toUpperCase()}
                   </h3>
                   <p className="mt-4 leading-7 text-[#e8dfcf]/72">
                     {benefit.description}

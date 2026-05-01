@@ -1,14 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  ClipboardCheck,
-  HandCoins,
-  MapPinned,
-  MessagesSquare,
-} from "lucide-react";
 
 type Coordination = {
+  emoji: string;
   name: string;
   description: string;
 };
@@ -70,12 +65,12 @@ export function CoordinationCarousel({
           <span className="coordination-number" aria-hidden="true">
             {activeNumber}
           </span>
-          <span className="coordination-icon" aria-hidden="true">
-            <Icon index={activeIndex} />
-          </span>
         </div>
 
-        <h3>{active.name}</h3>
+        <h3>
+          <span aria-hidden="true">{active.emoji}</span>{" "}
+          {active.name.toUpperCase()}
+        </h3>
 
         <div className="coordination-description" aria-hidden={!isExpanded}>
           <p>{active.description}</p>
@@ -114,15 +109,4 @@ export function CoordinationCarousel({
       </div>
     </div>
   );
-}
-
-function Icon({ index }: { index: number }) {
-  const icons = [
-    <MessagesSquare key="marketing" size={32} strokeWidth={1.8} />,
-    <HandCoins key="sponsor" size={32} strokeWidth={1.8} />,
-    <ClipboardCheck key="admin" size={32} strokeWidth={1.8} />,
-    <MapPinned key="logistics" size={32} strokeWidth={1.8} />,
-  ];
-
-  return icons[index];
 }
