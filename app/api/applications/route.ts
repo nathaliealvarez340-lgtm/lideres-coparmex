@@ -81,9 +81,14 @@ export async function POST(request: Request) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.RESEND_FROM_EMAIL;
 
     if (!apiKey) {
       throw new Error("Missing RESEND_API_KEY");
+    }
+
+    if (!fromEmail) {
+      throw new Error("Missing RESEND_FROM_EMAIL");
     }
 
     const attachment = Buffer.from(await cv.arrayBuffer()).toString("base64");
@@ -94,9 +99,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from:
-          process.env.RESEND_FROM_EMAIL ??
-          "Mesa de Líderes COPARMEX <onboarding@resend.dev>",
+        from: fromEmail,
         to: ["nathaliealvarez340@gmail.com"],
         reply_to: values.email,
         subject: `Nueva postulación - ${values.fullName}`,
@@ -126,9 +129,7 @@ export async function POST(request: Request) {
 
     return Response.json({ message: "Gracias por postularte…" });
   } catch (error) {
-    if (process.env.NODE_ENV === "development") {
-      console.error("Application submit error:", error);
-    }
+    console.error("Application submit error:", error);
 
     return Response.json(
       { message: "No pudimos enviar tu postulación. Inténtalo de nuevo." },
