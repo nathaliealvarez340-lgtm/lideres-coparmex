@@ -45,7 +45,10 @@ type CreateCandidateInput = {
   projectLink: string;
 };
 
-const dataDirectory = path.join(process.cwd(), ".data");
+const dataDirectory =
+  process.env.VERCEL === "1"
+    ? path.join("/tmp", "lideres-coparmex-admin")
+    : path.join(process.cwd(), ".data");
 const cvDirectory = path.join(dataDirectory, "candidate-cvs");
 const databasePath = path.join(dataDirectory, "candidate-applications.json");
 
@@ -92,12 +95,14 @@ export async function createCandidateApplication(input: CreateCandidateInput) {
 }
 
 export async function listCandidateApplications() {
-  await ensureStorage();
-
   try {
+    await ensureStorage();
     const raw = await readFile(databasePath, "utf8");
-    return JSON.parse(raw) as CandidateApplication[];
-  } catch {
+    const parsed = JSON.parse(raw) as unknown;
+
+    return Array.isArray(parsed) ? (parsed as CandidateApplication[]) : [];
+  } catch (error) {
+    console.error("Application store error:", error);
     return [];
   }
 }
@@ -112,20 +117,25 @@ export async function updateCandidateApplication(
   id: string,
   updates: Partial<Pick<CandidateApplication, "adminNotes" | "status">>,
 ) {
-  const candidates = await listCandidateApplications();
-  const index = candidates.findIndex((candidate) => candidate.id === id);
+  try {
+    const candidates = await listCandidateApplications();
+    const index = candidates.findIndex((candidate) => candidate.id === id);
 
-  if (index < 0) {
+    if (index < 0) {
+      return null;
+    }
+
+    candidates[index] = {
+      ...candidates[index],
+      ...updates,
+    };
+    await saveCandidateApplications(candidates);
+
+    return candidates[index];
+  } catch (error) {
+    console.error("Application store error:", error);
     return null;
   }
-
-  candidates[index] = {
-    ...candidates[index],
-    ...updates,
-  };
-  await saveCandidateApplications(candidates);
-
-  return candidates[index];
 }
 
 export async function getCandidateCvPath(id: string) {
@@ -142,12 +152,18 @@ export async function getCandidateCvPath(id: string) {
 }
 
 async function ensureStorage() {
-  await mkdir(cvDirectory, { recursive: true });
-
   try {
+    await mkdir(cvDirectory, { recursive: true });
     await readFile(databasePath, "utf8");
-  } catch {
-    await writeFile(databasePath, "[]");
+  } catch (error) {
+    try {
+      await writeFile(databasePath, "[]", { flag: "wx" });
+    } catch (writeError) {
+      if ((writeError as NodeJS.ErrnoException).code !== "EEXIST") {
+        console.error("Application store error:", error);
+        throw writeError;
+      }
+    }
   }
 }
 

@@ -832,6 +832,18 @@ body {
   margin-top: 6px;
 }
 
+.admin-footer-link {
+  color: rgba(255, 248, 232, 0.68);
+  cursor: pointer;
+  font-weight: 800;
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+
+.admin-footer-link:hover {
+  opacity: 0.72;
+}
+
 .selection-process {
   animation: feature-enter 560ms ease both;
 }

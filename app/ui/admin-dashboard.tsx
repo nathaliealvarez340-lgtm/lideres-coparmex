@@ -196,7 +196,11 @@ export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
                   <em>Ver perfil</em>
                 </button>
               ))}
-              {filteredApplications.length === 0 ? (
+              {applications.length === 0 ? (
+                <p className="admin-empty">
+                  Aún no hay postulaciones registradas.
+                </p>
+              ) : filteredApplications.length === 0 ? (
                 <p className="admin-empty">No hay postulantes con esos filtros.</p>
               ) : null}
             </div>
@@ -210,7 +214,7 @@ export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
             />
           ) : (
             <div className="admin-profile-panel">
-              <p>No hay postulaciones todavía.</p>
+              <p>Aún no hay postulaciones registradas.</p>
             </div>
           )}
         </section>

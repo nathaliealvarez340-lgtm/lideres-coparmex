@@ -35,17 +35,17 @@ export function createAdminSession(username: string) {
 }
 
 export function verifyAdminSession(cookieValue?: string | null) {
-  if (!cookieValue) {
-    return false;
-  }
-
-  const [encodedPayload, signature] = cookieValue.split(".");
-
-  if (!encodedPayload || !signature || sign(encodedPayload) !== signature) {
-    return false;
-  }
-
   try {
+    if (!cookieValue) {
+      return false;
+    }
+
+    const [encodedPayload, signature] = cookieValue.split(".");
+
+    if (!encodedPayload || !signature || sign(encodedPayload) !== signature) {
+      return false;
+    }
+
     const payload = JSON.parse(fromBase64Url(encodedPayload)) as SessionPayload;
 
     return payload.username === getAdminUsername() && payload.exp > Date.now();

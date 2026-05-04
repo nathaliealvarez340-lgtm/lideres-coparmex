@@ -152,18 +152,22 @@ export async function POST(request: Request) {
     }`,
   );
 }
-    await createCandidateApplication({
-      career: values.career,
-      coordination: values.coordination,
-      currentProjectAnswer: values.why,
-      cvBuffer,
-      cvFileName: cv.name || "cv-postulante",
-      email: values.email,
-      fullName: values.fullName,
-      phone: values.phone,
-      progressAnswer: values.progress,
-      projectLink: values.projectLink,
-    });
+    try {
+      await createCandidateApplication({
+        career: values.career,
+        coordination: values.coordination,
+        currentProjectAnswer: values.why,
+        cvBuffer,
+        cvFileName: cv.name || "cv-postulante",
+        email: values.email,
+        fullName: values.fullName,
+        phone: values.phone,
+        progressAnswer: values.progress,
+        projectLink: values.projectLink,
+      });
+    } catch (error) {
+      console.error("Application store error:", error);
+    }
 
     return Response.json({ message: "Gracias por postularte…" });
   } catch (error) {

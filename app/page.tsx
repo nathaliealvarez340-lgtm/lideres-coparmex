@@ -266,6 +266,15 @@ function MaiaTrustCopy() {
         La información proporcionada será utilizada exclusivamente para fines de
         evaluación dentro del proceso de selección.
       </p>
+      <p>
+        <a
+          aria-label="Acceso administrativo"
+          className="admin-footer-link"
+          href="/admin"
+        >
+          Admin
+        </a>
+      </p>
     </div>
   );
 }
