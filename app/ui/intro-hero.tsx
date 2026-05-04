@@ -73,7 +73,7 @@ export function IntroHero() {
         <div className="max-w-5xl text-center lg:text-left">
           <div className="mb-8 flex items-center justify-center gap-4 lg:justify-start">
             <span className="h-px w-14 bg-gradient-to-r from-[#5de0e6] to-transparent" />
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d8bd7a]">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#5de0e6]">
               Convocatoria
             </p>
           </div>
@@ -105,7 +105,7 @@ export function IntroHero() {
         </div>
 
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#d8bd7a]/90">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#5de0e6]/90">
             Acceso en
           </p>
           <div className="mt-4 min-h-[5.2rem] overflow-hidden sm:min-h-[6.4rem] lg:min-h-[7rem]">
