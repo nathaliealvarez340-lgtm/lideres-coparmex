@@ -151,6 +151,7 @@ export default function Home() {
           id="postulacion"
         >
           <SelectionProcess />
+          <BuildPathBlock />
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div className="sticky top-10 hidden lg:block">
               <p className="section-kicker">Postulación</p>
@@ -181,6 +182,33 @@ export default function Home() {
         </section>
       </div>
     </main>
+  );
+}
+
+function BuildPathBlock() {
+  return (
+    <div className="build-path-block mx-auto mb-24 max-w-7xl">
+      <div className="build-path-panel">
+        <div>
+          <p className="section-kicker">CONSTRUYE TU CAMINO</p>
+          <h2>No es solo networking. Aquí no esperas oportunidades: las generas.</h2>
+        </div>
+        <div className="build-path-copy">
+          <p>
+            Este espacio es para quienes ya están construyendo algo: un
+            proyecto, una idea, una iniciativa real.
+          </p>
+          <p>
+            No buscamos intención vacía. Buscamos dirección, criterio y
+            compromiso para convertir ideas en acción.
+          </p>
+          <strong>
+            Si ya estás construyendo algo, este es el lugar para llevarlo más
+            lejos.
+          </strong>
+        </div>
+      </div>
+    </div>
   );
 }
 

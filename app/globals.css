@@ -549,6 +549,85 @@ body {
   line-height: 1.58;
 }
 
+.build-path-block {
+  animation: feature-enter 620ms ease both;
+}
+
+.build-path-panel {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  gap: clamp(28px, 5vw, 72px);
+  border: 1px solid rgba(255, 248, 232, 0.12);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(200, 164, 93, 0.18), transparent 34%),
+    radial-gradient(circle at 100% 100%, rgba(122, 17, 25, 0.24), transparent 34%),
+    linear-gradient(145deg, rgba(255, 248, 232, 0.09), rgba(255, 248, 232, 0.026)),
+    rgba(10, 6, 8, 0.52);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.38),
+    0 0 42px rgba(122, 17, 25, 0.14);
+  backdrop-filter: blur(20px);
+  padding: clamp(28px, 5vw, 58px);
+}
+
+.build-path-panel::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 164, 93, 0.18),
+    transparent 28%,
+    rgba(122, 17, 25, 0.12)
+  );
+  content: "";
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.build-path-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.build-path-panel h2 {
+  margin-top: 18px;
+  max-width: 780px;
+  color: #fff8e8;
+  font-size: clamp(2.25rem, 5vw, 5.1rem);
+  font-weight: 760;
+  letter-spacing: 0;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.build-path-copy {
+  max-width: 620px;
+}
+
+.build-path-copy p {
+  color: rgba(232, 223, 207, 0.78);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+  line-height: 1.78;
+}
+
+.build-path-copy p + p {
+  margin-top: 18px;
+}
+
+.build-path-copy strong {
+  display: block;
+  margin-top: 28px;
+  border-left: 2px solid rgba(200, 164, 93, 0.72);
+  color: #fff8e8;
+  font-size: clamp(1.08rem, 1.6vw, 1.28rem);
+  font-weight: 760;
+  line-height: 1.58;
+  padding-left: 18px;
+}
+
 @keyframes process-step-enter {
   from {
     filter: blur(7px);
@@ -620,6 +699,13 @@ body {
   border-color: rgba(200, 164, 93, 0.78);
   background: rgba(3, 2, 4, 0.7);
   box-shadow: 0 0 0 4px rgba(200, 164, 93, 0.12);
+}
+
+.simple-textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.7;
+  padding-top: 16px;
 }
 
 .rich-editor-shell {
@@ -865,6 +951,13 @@ body {
 
   .logo-grid-panel {
     gap: 28px 42px;
+  }
+}
+
+@media (min-width: 900px) {
+  .build-path-panel {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: end;
   }
 }
 

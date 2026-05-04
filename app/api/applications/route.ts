@@ -5,6 +5,7 @@ const requiredFields = [
   "career",
   "coordination",
   "why",
+  "progress",
 ];
 
 const allowedCoordinations = [
@@ -28,6 +29,8 @@ export async function POST(request: Request) {
       ]),
     );
     const cv = formData.get("cv");
+    const projectLink = String(formData.get("projectLink") ?? "").trim();
+    values.projectLink = projectLink;
 
     const missingField = requiredFields.find((field) => !values[field]);
 
@@ -55,6 +58,16 @@ export async function POST(request: Request) {
     if (values.why.length < 20) {
       return Response.json(
         { message: "Cuéntanos un poco más sobre tu perfil." },
+        { status: 400 },
+      );
+    }
+
+    if (countWords(values.progress) < 40) {
+      return Response.json(
+        {
+          message:
+            "Tu respuesta sobre avances debe tener al menos 40 palabras mínimas.",
+        },
         { status: 400 },
       );
     }
@@ -100,9 +113,12 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: fromEmail,
-        to: ["nathaliealvarez340@gmail.com"],
+        to: [
+          "nathaliealvarez340@gmail.com",
+          "Rpolancomaldonado@gmail.com",
+        ],
         reply_to: values.email,
-        subject: `Nueva postulación - ${values.fullName}`,
+        subject: "Nueva postulación | Mesa de Líderes COPARMEX",
         html: buildEmailHtml(values),
         attachments: [
           {
@@ -151,6 +167,10 @@ function isAllowedFile(file: File) {
   );
 }
 
+function countWords(text: string) {
+  return text.match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu)?.length ?? 0;
+}
+
 function getContentTypeFromName(fileName: string) {
   return fileName.toLowerCase().endsWith(".png") ? "image/png" : "application/pdf";
 }
@@ -164,8 +184,15 @@ function buildEmailHtml(values: Record<string, string>) {
       <p><strong>Teléfono:</strong> ${escapeHtml(values.phone)}</p>
       <p><strong>Carrera:</strong> ${escapeHtml(values.career)}</p>
       <p><strong>Coordinación:</strong> ${escapeHtml(values.coordination)}</p>
-      <p><strong>¿Por qué deberían considerarle?</strong></p>
+      <p><strong>¿Qué está construyendo actualmente?</strong></p>
       <p>${escapeHtml(values.why).replace(/\n/g, "<br />")}</p>
+      <p><strong>¿Qué avances o resultados ha logrado hasta ahora?</strong></p>
+      <p>${escapeHtml(values.progress).replace(/\n/g, "<br />")}</p>
+      ${
+        values.projectLink
+          ? `<p><strong>Link a proyecto, portafolio o avance:</strong> <a href="${escapeHtml(values.projectLink)}">${escapeHtml(values.projectLink)}</a></p>`
+          : ""
+      }
     </div>
   `;
 }

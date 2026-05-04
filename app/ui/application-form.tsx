@@ -12,10 +12,11 @@ const acceptedTypes = ["application/pdf", "image/png"];
 const acceptedExtensions = [".pdf", ".png"];
 const maxFileSize = 4.4 * 1024 * 1024;
 const minimumWords = 100;
+const progressMinimumWords = 40;
 const pasteWarning =
   "Para asegurar una respuesta auténtica, este campo debe escribirse manualmente.";
 const successMessage =
-  "Gracias por dar el primer paso para formar parte de la Mesa de Líderes COPARMEX.\n\nTu información será revisada por la mesa directiva. En caso de que tu perfil sea aprobado y avance a la siguiente fase, nos pondremos en contacto contigo por correo.\n\nMientras tanto, sigue preparándote: las oportunidades importantes también reconocen a quienes llegan con intención, criterio y compromiso.";
+  "Gracias por dar el primer paso para formar parte de la Mesa de Líderes COPARMEX.\n\nTu información será revisada por la mesa directiva. Este proceso prioriza perfiles con iniciativa real, dirección clara y evidencia de construcción.\n\nEn caso de que tu perfil avance a la siguiente fase, nos pondremos en contacto contigo por correo.\n\nMientras tanto, sigue construyendo. Eso también habla por ti.";
 
 export function ApplicationForm({ coordinations }: ApplicationFormProps) {
   const editorRef = useRef<HTMLDivElement>(null);
@@ -23,9 +24,11 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState("");
   const [pasteNotice, setPasteNotice] = useState("");
+  const [progressText, setProgressText] = useState("");
   const [whyText, setWhyText] = useState("");
 
   const wordCount = countWords(whyText);
+  const progressWordCount = countWords(progressText);
 
   function runCommand(command: string, value?: string) {
     editorRef.current?.focus();
@@ -61,9 +64,18 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
       return;
     }
 
+    if (countWords(progressText) < progressMinimumWords) {
+      setStatus("error");
+      setMessage(
+        "Tu respuesta sobre avances debe tener al menos 40 palabras mínimas.",
+      );
+      return;
+    }
+
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.set("why", cleanWhy);
+    formData.set("progress", normalizeText(progressText));
     const file = formData.get("cv");
 
     if (!(file instanceof File) || file.size === 0) {
@@ -108,6 +120,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
         editorRef.current.innerHTML = "";
       }
       setWhyText("");
+      setProgressText("");
       setPasteNotice("");
       setFileName("");
       setStatus("success");
@@ -130,7 +143,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
         </div>
         <div className="mx-auto mt-7 h-px w-28 bg-gradient-to-r from-transparent via-[#c8a45d] to-transparent" />
         <h3 className="mt-8 text-center text-3xl font-semibold text-[#fff8e8] sm:text-4xl">
-          Postulación recibida
+          Postulación recibida.
         </h3>
         <p className="mx-auto mt-5 max-w-2xl text-center text-lg leading-8 text-[#e8dfcf]/78">
           {message.split("\n\n").map((paragraph) => (
@@ -185,7 +198,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
         </label>
 
         <div className="field-shell sm:col-span-2">
-          <span>¿Por qué deberíamos considerarte?</span>
+          <span>¿Qué estás construyendo actualmente?</span>
           <div className="rich-editor-shell">
             <div className="editor-toolbar" aria-label="Herramientas del editor">
               <ToolbarButton label="Negrita" onClick={() => runCommand("bold")}>
@@ -263,7 +276,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
               aria-label="Respuesta de postulación"
               className="rich-editor"
               contentEditable
-              data-placeholder="Habla de tu criterio, experiencia, motivación y lo que puedes aportar a la mesa."
+              data-placeholder="Describe un proyecto, emprendimiento, iniciativa o idea que ya estés desarrollando. Sé concreto."
               onContextMenu={(event) => {
                 event.preventDefault();
                 setPasteNotice(pasteWarning);
@@ -288,6 +301,29 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
           </p>
           {pasteNotice ? <p className="paste-notice">{pasteNotice}</p> : null}
         </div>
+
+        <label className="field-shell sm:col-span-2">
+          <span>¿Qué avances o resultados has logrado hasta ahora?</span>
+          <textarea
+            className="field-control simple-textarea"
+            name="progress"
+            onChange={(event) => setProgressText(event.currentTarget.value)}
+            placeholder="Comparte avances, aprendizajes, validaciones, métricas, clientes, comunidad, prototipos, eventos, publicaciones o cualquier evidencia de progreso."
+            required
+            value={progressText}
+          />
+          <p className="text-sm text-[#e8dfcf]/62">
+            {progressWordCount} / {progressMinimumWords} palabras mínimas
+          </p>
+        </label>
+
+        <Field
+          className="sm:col-span-2"
+          label="Link a tu proyecto, portafolio o avance"
+          name="projectLink"
+          placeholder="Notion, Drive, LinkedIn, Instagram, sitio web, pitch, portafolio o cualquier evidencia de lo que estás construyendo."
+          type="text"
+        />
 
         <label className="dropzone sm:col-span-2">
           <input
@@ -356,18 +392,28 @@ function ToolbarButton({
 }
 
 function Field({
+  className = "",
   label,
   name,
+  placeholder,
   type,
 }: {
+  className?: string;
   label: string;
   name: string;
+  placeholder?: string;
   type: string;
 }) {
   return (
-    <label className="field-shell">
+    <label className={`field-shell ${className}`}>
       <span>{label}</span>
-      <input className="field-control" name={name} required type={type} />
+      <input
+        className="field-control"
+        name={name}
+        placeholder={placeholder}
+        required={!placeholder}
+        type={type}
+      />
     </label>
   );
 }
