@@ -1,3 +1,5 @@
+import { createCandidateApplication } from "@/app/lib/application-store";
+
 const requiredFields = [
   "fullName",
   "email",
@@ -104,7 +106,8 @@ export async function POST(request: Request) {
       throw new Error("Missing RESEND_FROM_EMAIL");
     }
 
-    const attachment = Buffer.from(await cv.arrayBuffer()).toString("base64");
+    const cvBuffer = Buffer.from(await cv.arrayBuffer());
+    const attachment = cvBuffer.toString("base64");
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -115,7 +118,7 @@ export async function POST(request: Request) {
         from: fromEmail,
         to: [
           "nathaliealvarez340@gmail.com",
-          "Rpolancomaldonado@gmail.com",
+          "rpolancomaldonado@gmail.com",
         ],
         reply_to: values.email,
         subject: "Nueva postulación | Mesa de Líderes COPARMEX",
@@ -137,11 +140,30 @@ export async function POST(request: Request) {
     });
 
     if (!resendResponse.ok) {
-      const resendError = await resendResponse.text();
-      throw new Error(
-        `Resend error ${resendResponse.status}: ${resendError || resendResponse.statusText}`,
-      );
-    }
+  const resendError = await resendResponse.text();
+  console.error("Resend submit error:", {
+    status: resendResponse.status,
+    error: resendError,
+  });
+
+  throw new Error(
+    `Resend error ${resendResponse.status}: ${
+      resendError || resendResponse.statusText
+    }`,
+  );
+}
+    await createCandidateApplication({
+      career: values.career,
+      coordination: values.coordination,
+      currentProjectAnswer: values.why,
+      cvBuffer,
+      cvFileName: cv.name || "cv-postulante",
+      email: values.email,
+      fullName: values.fullName,
+      phone: values.phone,
+      progressAnswer: values.progress,
+      projectLink: values.projectLink,
+    });
 
     return Response.json({ message: "Gracias por postularte…" });
   } catch (error) {
