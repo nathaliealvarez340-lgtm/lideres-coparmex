@@ -72,7 +72,7 @@ export function IntroHero() {
       <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_260px] lg:items-center xl:grid-cols-[minmax(0,1fr)_310px]">
         <div className="max-w-5xl text-center lg:text-left">
           <div className="mb-8 flex items-center justify-center gap-4 lg:justify-start">
-            <span className="h-px w-14 bg-gradient-to-r from-[#c8a45d] to-transparent" />
+            <span className="h-px w-14 bg-gradient-to-r from-[#5de0e6] to-transparent" />
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#d8bd7a]">
               Convocatoria
             </p>
@@ -124,3 +124,5 @@ export function IntroHero() {
     </section>
   );
 }
+
+

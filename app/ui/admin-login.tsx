@@ -54,8 +54,8 @@ export function AdminLogin() {
             Usuario
             <input
               autoComplete="username"
-              defaultValue="MD-Coparmex"
               name="username"
+              placeholder="Usuario"
               required
               type="text"
             />

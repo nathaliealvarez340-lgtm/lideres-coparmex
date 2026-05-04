@@ -141,7 +141,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
         <div className="success-check" aria-hidden="true">
           <span />
         </div>
-        <div className="mx-auto mt-7 h-px w-28 bg-gradient-to-r from-transparent via-[#c8a45d] to-transparent" />
+        <div className="mx-auto mt-7 h-px w-28 bg-gradient-to-r from-transparent via-[#5de0e6] to-transparent" />
         <h3 className="mt-8 text-center text-3xl font-semibold text-[#fff8e8] sm:text-4xl">
           Postulación recibida.
         </h3>
@@ -160,7 +160,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
     <form className="form-panel" onSubmit={handleSubmit}>
       <div className="mb-8 flex flex-col gap-3 border-b border-white/10 pb-7 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c8a45d]">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#5de0e6]">
             Expediente de candidatura
           </p>
           <h3 className="mt-3 text-3xl font-semibold tracking-normal text-[#fff8e8]">
@@ -356,7 +356,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
 
       {message ? (
         <p
-          className="mt-5 rounded-2xl border border-[#da3a3f]/35 bg-[#7a1119]/25 px-5 py-4 text-sm text-[#ffd7d7]"
+          className="mt-5 rounded-2xl border border-[#5de0e6]/35 bg-[#084e76]/25 px-5 py-4 text-sm text-[#d7fbff]"
           role="status"
         >
           {message}
@@ -437,3 +437,5 @@ function isAllowedFile(file: File) {
     acceptedExtensions.some((extension) => fileName.endsWith(extension))
   );
 }
+
+

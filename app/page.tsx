@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ApplicationForm } from "./ui/application-form";
 import { CoordinationCarousel } from "./ui/coordination-carousel";
 import { IntroHero } from "./ui/intro-hero";
+import { SplineBackground } from "./ui/spline-background";
 
 const benefits = [
   {
@@ -73,18 +74,9 @@ const partnerLogos = [
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#030204] text-[#fff8e8]">
-      <video
-        aria-hidden="true"
-        autoPlay
-        className="fixed inset-0 z-0 h-full w-full object-cover"
-        loop
-        muted
-        playsInline
-      >
-        <source src="/background.mp4" type="video/mp4" />
-      </video>
-      <div className="fixed inset-0 z-10 bg-[#030204]/48" />
-      <div className="fixed inset-0 z-10 bg-[radial-gradient(circle_at_20%_12%,rgba(136,20,30,0.34),transparent_34%),radial-gradient(circle_at_82%_28%,rgba(200,164,93,0.14),transparent_28%),linear-gradient(180deg,rgba(3,2,4,0.04),rgba(3,2,4,0.46)_86%)]" />
+      <SplineBackground />
+      <div className="fixed inset-0 z-10 bg-[#030204]/50" />
+      <div className="fixed inset-0 z-10 bg-[radial-gradient(circle_at_20%_12%,rgba(8,78,118,0.36),transparent_34%),radial-gradient(circle_at_82%_28%,rgba(93,224,230,0.14),transparent_28%),linear-gradient(180deg,rgba(3,2,4,0.04),rgba(3,2,4,0.5)_86%)]" />
 
       <div className="relative z-20">
         <IntroHero />
@@ -115,7 +107,7 @@ export default function Home() {
             <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               {benefits.map((benefit) => (
                 <article className="feature-card" key={benefit.title}>
-                  <span className="font-mono text-sm text-[#c8a45d]">
+                  <span className="font-mono text-sm text-[#5de0e6]">
                     {benefit.metric}
                   </span>
                   <h3>
@@ -162,7 +154,7 @@ export default function Home() {
               Completa tu información con intención. Buscamos perfiles con
               claridad, compromiso y ganas de asumir responsabilidad real.
             </p>
-            <div className="mt-10 h-px w-full bg-gradient-to-r from-[#c8a45d] via-[#7a1119] to-transparent" />
+            <div className="mt-10 h-px w-full bg-gradient-to-r from-[#5de0e6] via-[#084e76] to-transparent" />
             <LogoGrid />
             <MaiaTrustCopy />
           </div>
@@ -272,7 +264,7 @@ function MaiaTrustCopy() {
           className="admin-footer-link"
           href="/admin"
         >
-          Admin
+          COPARMEX
         </a>
       </p>
     </div>
@@ -295,3 +287,5 @@ function LogoGrid() {
     </div>
   );
 }
+
+
