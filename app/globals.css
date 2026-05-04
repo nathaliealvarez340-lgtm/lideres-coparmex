@@ -12,10 +12,11 @@
 .spline-background {
   position: fixed;
   inset: 0;
-  z-index: 0;
-  overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: -1;
   background:
     radial-gradient(circle at 20% 12%, rgba(8, 78, 118, 0.45), transparent 34%),
     #020712;
@@ -24,8 +25,10 @@
 
 .spline-background hana-viewer {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100vh;
+  object-fit: cover;
 }
 
 .admin-shell {

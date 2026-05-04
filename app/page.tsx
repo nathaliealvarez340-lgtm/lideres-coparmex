@@ -73,7 +73,7 @@ const partnerLogos = [
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#030204] text-[#fff8e8]">
+    <main className="relative isolate min-h-screen overflow-hidden bg-transparent text-[#fff8e8]">
       <SplineBackground />
       <div className="fixed inset-0 z-10 bg-[#030204]/50" />
       <div className="fixed inset-0 z-10 bg-[radial-gradient(circle_at_20%_12%,rgba(8,78,118,0.36),transparent_34%),radial-gradient(circle_at_82%_28%,rgba(93,224,230,0.14),transparent_28%),linear-gradient(180deg,rgba(3,2,4,0.04),rgba(3,2,4,0.5)_86%)]" />
