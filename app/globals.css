@@ -19,16 +19,33 @@
   z-index: -1;
   background:
     radial-gradient(circle at 20% 12%, rgba(8, 78, 118, 0.45), transparent 34%),
-    #020712;
+    #020b14;
   pointer-events: none;
 }
 
-.spline-background hana-viewer {
+.spline-background hana-viewer,
+hana-viewer {
   display: block;
   width: 100vw;
   height: 100dvh;
   min-height: 100vh;
   object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .spline-background {
+    background: #020b14;
+  }
+
+  .spline-background hana-viewer,
+  hana-viewer,
+  .background-video {
+    display: block;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 100vh;
+    object-fit: contain;
+  }
 }
 
 .admin-shell {
