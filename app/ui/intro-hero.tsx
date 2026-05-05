@@ -79,13 +79,17 @@ export function IntroHero() {
           </div>
 
           <h1 className="max-w-5xl text-5xl font-semibold leading-[0.98] tracking-normal text-[#fff8e8] sm:text-7xl lg:text-8xl">
-            Forma parte de la Mesa de Líderes COPARMEX
+            Forma parte de la Mesa de Capítulo Universitario COPARMEX
           </h1>
 
           <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[#e8dfcf]/85 sm:text-2xl sm:leading-10 lg:mx-0">
             Entra a una comunidad selectiva donde el liderazgo joven se prueba
             en proyectos reales, alianzas estratégicas y decisiones que abren
             camino dentro del ecosistema empresarial.
+          </p>
+          <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-6 text-[#e8dfcf]/75 sm:text-base lg:mx-0">
+            Liderazgo enfocado en transformación, ejecución y construcción
+            real.
           </p>
 
           {isUnlocked ? (
