@@ -696,9 +696,10 @@ body {
   gap: 0.42em;
   margin: 0;
   color: #fff8e8;
+  font-family: var(--font-league-gothic), "Arial Narrow", Impact, sans-serif;
   font-size: clamp(2.65rem, 5vw, 4.55rem);
-  font-weight: 900;
-  letter-spacing: 0.015em;
+  font-weight: 400;
+  letter-spacing: 0.03em;
   line-height: 0.95;
   text-align: center;
   text-wrap: balance;

@@ -12,8 +12,7 @@ const requiredFields = [
 
 const allowedCoordinations = [
   "Comunicación y Marketing",
-  "Patrocinios",
-  "Administrativa",
+  "Vinculación",
   "Logística",
 ];
 

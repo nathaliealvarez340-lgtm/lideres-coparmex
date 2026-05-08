@@ -43,16 +43,10 @@ const coordinations = [
       "Diseña la narrativa del capítulo, comunica iniciativas, fortalece la presencia digital y convierte cada actividad en una experiencia visible y memorable.",
   },
   {
-    emoji: "🪙",
-    name: "Patrocinios",
+    emoji: "🤝",
+    name: "Vinculación",
     description:
-      "Construye relaciones con aliados, desarrolla propuestas de valor, da seguimiento comercial y ayuda a convertir conexiones en oportunidades reales.",
-  },
-  {
-    emoji: "🗂️",
-    name: "Administrativa",
-    description:
-      "Organiza documentación, acuerdos, presupuestos, registros y procesos internos para que la mesa opere con claridad, orden y continuidad.",
+      "Conecta perfiles, alianzas y oportunidades para fortalecer la relación entre estudiantes, comunidad y ecosistema empresarial.",
   },
   {
     emoji: "🛠️",
