@@ -38,21 +38,27 @@ const benefits = [
 const coordinations = [
   {
     emoji: "📣",
-    name: "Comunicación y Marketing",
+    name: "Comunicación y Redes",
     description:
-      "Diseña la narrativa del capítulo, comunica iniciativas, fortalece la presencia digital y convierte cada actividad en una experiencia visible y memorable.",
+      "Construye la presencia digital, narrativa e imagen del capítulo.",
+  },
+  {
+    emoji: "🪙",
+    name: "Patrocinios",
+    description:
+      "Gestiona alianzas, marcas y relaciones con empresas.",
   },
   {
     emoji: "🤝",
     name: "Vinculación",
     description:
-      "Conecta perfiles, alianzas y oportunidades para fortalecer la relación entre estudiantes, comunidad y ecosistema empresarial.",
+      "Conecta talento, recluta perfiles estratégicos y fortalece relaciones externas.",
   },
   {
     emoji: "🛠️",
     name: "Logística",
     description:
-      "Planea experiencias, coordina recursos, tiempos, espacios y ejecución en sitio para que cada iniciativa funcione con precisión.",
+      "Coordina eventos, operación y ejecución estratégica del capítulo.",
   },
 ];
 
