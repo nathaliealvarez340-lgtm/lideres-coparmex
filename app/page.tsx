@@ -115,7 +115,7 @@ export default function Home() {
           id="experiencia"
         >
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
               <div>
                 <p className="section-kicker">La experiencia</p>
                 <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-normal sm:text-6xl">
@@ -168,8 +168,8 @@ export default function Home() {
           <SelectionProcess />
           <ProcessDetails />
           <BuildPathBlock />
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-            <div className="sticky top-10 hidden lg:block">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch">
+            <div className="postulation-aside sticky top-10 hidden lg:flex lg:flex-col">
               <p className="section-kicker">Postulación</p>
               <h2 className="mt-5 text-5xl font-semibold leading-tight tracking-normal">
                 Tu siguiente rol empieza con una decisión.
@@ -178,9 +178,11 @@ export default function Home() {
               Completa tu información con intención. Buscamos perfiles con
               claridad, compromiso y ganas de asumir responsabilidad real.
             </p>
+            <div className="postulation-aside-footer">
             <div className="mt-10 h-px w-full bg-gradient-to-r from-[#5de0e6] via-[#084e76] to-transparent" />
             <LogoGrid />
             <MaiaTrustCopy />
+            </div>
           </div>
 
           <div>

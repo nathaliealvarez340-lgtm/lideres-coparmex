@@ -303,7 +303,7 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
         </div>
 
         <label className="field-shell sm:col-span-2">
-          <span>¿Qué avances o resultados has logrado hasta ahora?</span>
+          <span>¿Qué proyectos o actividades has logrado desarrollar?</span>
           <textarea
             className="field-control simple-textarea"
             name="progress"
