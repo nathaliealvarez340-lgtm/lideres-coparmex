@@ -122,9 +122,7 @@ export default function Home() {
                   Un espacio selectivo para liderar con criterio.
                 </h2>
               </div>
-              <div className="glass-panel p-7 sm:p-9">
-                <ExperienceCopyCarousel />
-              </div>
+              <ExperienceCopyCarousel />
             </div>
 
             <CoparmexChapterInfo />

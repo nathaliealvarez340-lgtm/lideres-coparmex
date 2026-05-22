@@ -40,15 +40,25 @@ export function ExperienceCopyCarousel() {
 
   return (
     <div className="experience-copy-carousel">
-      <p className="experience-copy-slide" key={activeIndex}>
-        {slides[activeIndex]}
-      </p>
+      <div className="experience-copy-viewport">
+        <p className="experience-copy-slide" key={activeIndex}>
+          {slides[activeIndex]}
+        </p>
+      </div>
       <div className="experience-copy-controls">
-        <button type="button" onClick={() => selectSlide("previous")}>
-          Anterior
+        <button
+          aria-label="Texto anterior"
+          type="button"
+          onClick={() => selectSlide("previous")}
+        >
+          {"<"}
         </button>
-        <button type="button" onClick={() => selectSlide("next")}>
-          Siguiente
+        <button
+          aria-label="Texto siguiente"
+          type="button"
+          onClick={() => selectSlide("next")}
+        >
+          {">"}
         </button>
       </div>
     </div>
