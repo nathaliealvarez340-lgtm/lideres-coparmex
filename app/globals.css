@@ -668,6 +668,14 @@ body {
   transform: translateY(-3px);
 }
 
+.coordination-feature-card.is-expanded {
+  min-height: 440px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 30px 32px 58px;
+  text-align: left;
+}
+
 .coordination-ghost-number {
   position: absolute;
   top: 50%;
@@ -705,9 +713,17 @@ body {
   text-wrap: balance;
 }
 
+.coordination-feature-card.is-expanded h3 {
+  max-width: min(100%, 520px);
+  justify-content: flex-start;
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  line-height: 0.92;
+  text-align: left;
+}
+
 .coordination-description {
   display: grid;
-  width: min(100%, 720px);
+  width: min(100%, 760px);
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
@@ -716,12 +732,54 @@ body {
     margin-top 260ms ease;
 }
 
-.coordination-description p {
+.coordination-description-inner {
   overflow: hidden;
+}
+
+.coordination-description p {
   color: rgba(232, 223, 207, 0.76);
   font-size: 0.98rem;
   line-height: 1.65;
-  text-align: center;
+  text-align: left;
+}
+
+.coordination-description span {
+  display: block;
+  margin-top: 18px;
+  color: rgba(93, 224, 230, 0.82);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.coordination-description ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 18px;
+  margin-top: 12px;
+  padding: 0;
+  color: rgba(232, 223, 207, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  list-style: none;
+}
+
+.coordination-description li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.coordination-description li::before {
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(93, 224, 230, 0.78);
+  box-shadow: 0 0 12px rgba(93, 224, 230, 0.28);
+  content: "";
 }
 
 .coordination-feature-card.is-expanded .coordination-description {
@@ -991,25 +1049,6 @@ body {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
   margin-top: 30px;
-}
-
-.process-details-track::before {
-  position: absolute;
-  top: 50%;
-  right: 7%;
-  left: 7%;
-  z-index: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(93, 224, 230, 0.5),
-    rgba(8, 78, 118, 0.32),
-    rgba(93, 224, 230, 0.42),
-    transparent
-  );
-  content: "";
-  pointer-events: none;
 }
 
 .process-detail-card {
@@ -1523,9 +1562,24 @@ body {
     padding: 24px 20px;
   }
 
+  .coordination-feature-card.is-expanded {
+    min-height: 520px;
+    padding: 26px 22px 58px;
+  }
+
   .coordination-feature-card h3 {
     font-size: clamp(1.9rem, 10vw, 2.55rem);
     line-height: 1;
+  }
+
+  .coordination-feature-card.is-expanded h3 {
+    max-width: 100%;
+    font-size: clamp(1.8rem, 9vw, 2.35rem);
+    line-height: 0.95;
+  }
+
+  .coordination-description ul {
+    grid-template-columns: 1fr;
   }
 
   .process-track {
@@ -1560,10 +1614,6 @@ body {
     grid-template-columns: 1fr;
     gap: 16px;
     margin-top: 24px;
-  }
-
-  .process-details-track::before {
-    display: none;
   }
 
   .process-detail-card {

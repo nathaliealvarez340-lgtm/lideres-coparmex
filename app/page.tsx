@@ -40,25 +40,53 @@ const coordinations = [
     emoji: "📣",
     name: "Comunicación y Redes",
     description:
-      "Construye la presencia digital, narrativa e imagen del capítulo.",
+      "Construye la presencia pública del capítulo a través de narrativa, contenido, identidad visual y comunicación estratégica.",
+    benefits: [
+      "Fortaleces marca y posicionamiento.",
+      "Creas contenido con intención.",
+      "Aprendes comunicación institucional.",
+      "Documentas eventos y logros.",
+      "Conviertes ideas en mensajes que conectan.",
+    ],
   },
   {
     emoji: "🪙",
     name: "Patrocinios",
     description:
-      "Gestiona alianzas, marcas y relaciones con empresas.",
+      "Gestiona alianzas con empresas, marcas y aliados estratégicos para generar recursos, visibilidad y valor para el capítulo.",
+    benefits: [
+      "Desarrollas negociación real.",
+      "Conectas con empresas y tomadores de decisión.",
+      "Aprendes a vender propuestas de valor.",
+      "Fortaleces relaciones institucionales.",
+      "Generas impacto medible para el capítulo.",
+    ],
   },
   {
     emoji: "🤝",
     name: "Vinculación",
     description:
-      "Conecta talento, recluta perfiles estratégicos y fortalece relaciones externas.",
+      "Conecta talento, miembros, aliados y oportunidades para ampliar la red del capítulo y fortalecer su impacto dentro y fuera del campus.",
+    benefits: [
+      "Identificas perfiles de alto potencial.",
+      "Construyes comunidad estratégica.",
+      "Fortaleces networking con propósito.",
+      "Impulsas reclutamiento y alianzas.",
+      "Conectas personas con oportunidades reales.",
+    ],
   },
   {
     emoji: "🛠️",
     name: "Logística",
     description:
-      "Coordina eventos, operación y ejecución estratégica del capítulo.",
+      "Coordina la operación detrás de cada experiencia: espacios, tiempos, recursos y ejecución para que todo funcione con precisión.",
+    benefits: [
+      "Desarrollas criterio operativo.",
+      "Aprendes a resolver presión real.",
+      "Coordinas personas, tiempos y recursos.",
+      "Fortaleces planeación y ejecución.",
+      "Conviertes ideas en experiencias funcionales.",
+    ],
   },
 ];
 
@@ -82,7 +110,7 @@ export default function Home() {
         <IntroHero />
 
         <section
-          className="relative px-6 py-24 sm:px-10 lg:px-14 lg:py-32"
+          className="relative px-6 pb-16 pt-24 sm:px-10 sm:pb-20 lg:px-14 lg:pb-24 lg:pt-32"
           id="experiencia"
         >
           <div className="mx-auto max-w-7xl">
@@ -139,7 +167,7 @@ export default function Home() {
         </section>
 
         <section
-          className="relative px-6 pb-24 pt-24 sm:px-10 lg:px-14 lg:pb-32 lg:pt-36"
+          className="relative px-6 pb-24 pt-12 sm:px-10 lg:px-14 lg:pb-32 lg:pt-16"
           id="postulacion"
         >
           <SelectionProcess />

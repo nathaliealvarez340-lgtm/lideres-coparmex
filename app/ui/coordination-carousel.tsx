@@ -6,6 +6,7 @@ type Coordination = {
   emoji: string;
   name: string;
   description: string;
+  benefits: string[];
 };
 
 type CoordinationCarouselProps = {
@@ -67,7 +68,15 @@ export function CoordinationCarousel({
         </h3>
 
         <div className="coordination-description" aria-hidden={!isExpanded}>
-          <p>{active.description}</p>
+          <div className="coordination-description-inner">
+            <p>{active.description}</p>
+            <span>Beneficios e importancia</span>
+            <ul>
+              {active.benefits.map((benefit) => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <span className="coordination-more-indicator">
