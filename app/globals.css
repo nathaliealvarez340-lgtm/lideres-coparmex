@@ -447,6 +447,61 @@ body {
   backdrop-filter: blur(22px);
 }
 
+.experience-copy-carousel {
+  display: flex;
+  min-height: 210px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.experience-copy-slide {
+  color: rgba(232, 223, 207, 0.82);
+  font-size: clamp(1rem, 1.3vw, 1.12rem);
+  line-height: 1.76;
+  animation: copy-slide-enter 420ms ease both;
+}
+
+.experience-copy-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.experience-copy-controls button {
+  border: 1px solid rgba(93, 224, 230, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 248, 232, 0.76);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 9px 14px;
+  text-transform: uppercase;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.experience-copy-controls button:hover {
+  border-color: rgba(93, 224, 230, 0.44);
+  color: #fff8e8;
+  transform: translateY(-1px);
+}
+
+@keyframes copy-slide-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .premium-button {
   display: inline-flex;
   min-height: 56px;
@@ -602,6 +657,49 @@ body {
   margin-top: 16px;
 }
 
+.coparmex-chapter-section {
+  margin-top: clamp(44px, 6vw, 72px);
+  animation: feature-enter 540ms ease both;
+}
+
+.coparmex-chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.coparmex-info-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(93, 224, 230, 0.15);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(93, 224, 230, 0.16), transparent 36%),
+    linear-gradient(145deg, rgba(255, 248, 232, 0.085), rgba(255, 248, 232, 0.026)),
+    rgba(10, 6, 8, 0.5);
+  box-shadow:
+    0 24px 76px rgba(0, 0, 0, 0.36),
+    0 0 34px rgba(8, 78, 118, 0.12);
+  backdrop-filter: blur(18px);
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.coparmex-info-card h3 {
+  color: #fff8e8;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.coparmex-info-card p {
+  margin-top: 14px;
+  color: rgba(232, 223, 207, 0.76);
+  font-size: clamp(0.98rem, 1.2vw, 1.06rem);
+  line-height: 1.7;
+}
+
 @keyframes feature-enter {
   from {
     filter: blur(8px);
@@ -654,6 +752,7 @@ body {
   text-align: center;
   transition:
     transform 220ms ease,
+    height 220ms ease,
     border-color 220ms ease,
     box-shadow 220ms ease;
   animation: card-enter 420ms ease both;
@@ -669,10 +768,11 @@ body {
 }
 
 .coordination-feature-card.is-expanded {
-  min-height: 440px;
+  height: 384px;
+  min-height: 384px;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 30px 32px 58px;
+  padding: 24px 28px 52px;
   text-align: left;
 }
 
@@ -716,7 +816,7 @@ body {
 .coordination-feature-card.is-expanded h3 {
   max-width: min(100%, 520px);
   justify-content: flex-start;
-  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  font-size: clamp(1.65rem, 2.7vw, 2.35rem);
   line-height: 0.92;
   text-align: left;
 }
@@ -738,16 +838,16 @@ body {
 
 .coordination-description p {
   color: rgba(232, 223, 207, 0.76);
-  font-size: 0.98rem;
-  line-height: 1.65;
+  font-size: 0.9rem;
+  line-height: 1.5;
   text-align: left;
 }
 
 .coordination-description span {
   display: block;
-  margin-top: 18px;
+  margin-top: 12px;
   color: rgba(93, 224, 230, 0.82);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -756,12 +856,12 @@ body {
 .coordination-description ul {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 18px;
-  margin-top: 12px;
+  gap: 6px 16px;
+  margin-top: 10px;
   padding: 0;
   color: rgba(232, 223, 207, 0.78);
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-size: 0.82rem;
+  line-height: 1.32;
   list-style: none;
 }
 
@@ -784,7 +884,7 @@ body {
 
 .coordination-feature-card.is-expanded .coordination-description {
   grid-template-rows: 1fr;
-  margin-top: 22px;
+  margin-top: 14px;
   opacity: 1;
 }
 
@@ -1115,13 +1215,13 @@ body {
 }
 
 .process-detail-content h3 {
-  max-width: 9ch;
+  max-width: 14ch;
   color: #fff8e8;
   font-family: var(--font-league-gothic), "Arial Narrow", Impact, sans-serif;
-  font-size: clamp(2.45rem, 3.7vw, 3.6rem);
+  font-size: clamp(1.85rem, 2.55vw, 2.55rem);
   font-weight: 400;
   letter-spacing: 0.02em;
-  line-height: 0.9;
+  line-height: 0.96;
   text-wrap: balance;
 }
 
@@ -1189,13 +1289,25 @@ body {
 
 .build-path-panel h2 {
   margin-top: 18px;
-  max-width: 780px;
+  max-width: 720px;
   color: #fff8e8;
-  font-size: clamp(2.25rem, 5vw, 5.1rem);
   font-weight: 760;
   letter-spacing: 0;
-  line-height: 0.98;
   text-wrap: balance;
+}
+
+.build-path-panel h2 span {
+  display: block;
+  line-height: 0.98;
+}
+
+.build-path-panel h2 span:first-child {
+  font-size: clamp(1.9rem, 3.4vw, 3.45rem);
+}
+
+.build-path-panel h2 span:last-child {
+  margin-top: 8px;
+  font-size: clamp(2.25rem, 4.3vw, 4.35rem);
 }
 
 .build-path-copy {
@@ -1557,14 +1669,23 @@ body {
 }
 
 @media (max-width: 767px) {
+  .experience-copy-carousel {
+    min-height: 280px;
+  }
+
+  .coparmex-chapter-grid {
+    grid-template-columns: 1fr;
+  }
+
   .coordination-feature-card {
     min-height: 280px;
     padding: 24px 20px;
   }
 
   .coordination-feature-card.is-expanded {
-    min-height: 520px;
-    padding: 26px 22px 58px;
+    height: 460px;
+    min-height: 460px;
+    padding: 22px 20px 54px;
   }
 
   .coordination-feature-card h3 {
@@ -1574,12 +1695,23 @@ body {
 
   .coordination-feature-card.is-expanded h3 {
     max-width: 100%;
-    font-size: clamp(1.8rem, 9vw, 2.35rem);
+    font-size: clamp(1.5rem, 8vw, 2.05rem);
     line-height: 0.95;
   }
 
   .coordination-description ul {
     grid-template-columns: 1fr;
+    gap: 5px;
+    font-size: 0.8rem;
+  }
+
+  .coordination-description p {
+    font-size: 0.84rem;
+    line-height: 1.42;
+  }
+
+  .coordination-description span {
+    margin-top: 10px;
   }
 
   .process-track {
@@ -1622,8 +1754,16 @@ body {
   }
 
   .process-detail-content h3 {
-    max-width: 12ch;
-    font-size: clamp(2.4rem, 14vw, 3.4rem);
+    max-width: 16ch;
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .build-path-panel h2 span:first-child {
+    font-size: clamp(1.75rem, 9vw, 2.7rem);
+  }
+
+  .build-path-panel h2 span:last-child {
+    font-size: clamp(2rem, 11vw, 3.25rem);
   }
 
   .process-detail-number {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ApplicationForm } from "./ui/application-form";
 import { CoordinationCarousel } from "./ui/coordination-carousel";
+import { ExperienceCopyCarousel } from "./ui/experience-copy-carousel";
 import { IntroHero } from "./ui/intro-hero";
 import { SplineBackground } from "./ui/spline-background";
 
@@ -110,7 +111,7 @@ export default function Home() {
         <IntroHero />
 
         <section
-          className="relative px-6 pb-16 pt-24 sm:px-10 sm:pb-20 lg:px-14 lg:pb-24 lg:pt-32"
+          className="relative px-6 pb-12 pt-24 sm:px-10 sm:pb-14 lg:px-14 lg:pb-16 lg:pt-32"
           id="experiencia"
         >
           <div className="mx-auto max-w-7xl">
@@ -122,15 +123,11 @@ export default function Home() {
                 </h2>
               </div>
               <div className="glass-panel p-7 sm:p-9">
-                <p className="text-lg leading-8 text-[#e8dfcf]/82">
-                  La Mesa de Líderes COPARMEX reúne a estudiantes con
-                  iniciativa, visión y disciplina para transformar ideas en
-                  proyectos con estándar ejecutivo. No es un club de asistencia:
-                  es un punto de encuentro para quienes quieren aprender a
-                  operar, comunicar, negociar y representar con criterio.
-                </p>
+                <ExperienceCopyCarousel />
               </div>
             </div>
+
+            <CoparmexChapterInfo />
 
             <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               {benefits.map((benefit) => (
@@ -167,7 +164,7 @@ export default function Home() {
         </section>
 
         <section
-          className="relative px-6 pb-24 pt-12 sm:px-10 lg:px-14 lg:pb-32 lg:pt-16"
+          className="relative px-6 pb-24 pt-10 sm:px-10 lg:px-14 lg:pb-32 lg:pt-12"
           id="postulacion"
         >
           <SelectionProcess />
@@ -212,7 +209,10 @@ function BuildPathBlock() {
       <div className="build-path-panel">
         <div>
           <p className="section-kicker">CONSTRUYE TU CAMINO</p>
-          <h2>No es solo networking. Aquí no esperas oportunidades: las generas.</h2>
+          <h2>
+            <span>No es solo networking.</span>
+            <span>Aquí no esperas oportunidades: las generas.</span>
+          </h2>
         </div>
         <div className="build-path-copy">
           <p>
@@ -228,6 +228,33 @@ function BuildPathBlock() {
             lejos.
           </strong>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function CoparmexChapterInfo() {
+  const items = [
+    {
+      title: "¿Qué es COPARMEX?",
+      text: "COPARMEX es una organización empresarial que busca fortalecer el desarrollo económico, el liderazgo, la participación empresarial y la construcción de una sociedad más competitiva, ética y sostenible en México.",
+    },
+    {
+      title: "Objetivo del capítulo",
+      text: "Formar estudiantes con iniciativa, pensamiento estratégico y capacidad de ejecución, conectándolos con empresarios, oportunidades, innovación y experiencias que impulsen su crecimiento profesional y personal.",
+    },
+  ];
+
+  return (
+    <div className="coparmex-chapter-section">
+      <p className="section-kicker">COPARMEX Y EL CAPÍTULO</p>
+      <div className="coparmex-chapter-grid">
+        {items.map((item) => (
+          <article className="coparmex-info-card" key={item.title}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
       </div>
     </div>
   );
