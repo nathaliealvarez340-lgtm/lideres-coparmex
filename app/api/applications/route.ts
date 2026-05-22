@@ -11,6 +11,8 @@ const requiredFields = [
 ];
 
 const allowedCoordinations = [
+  "Comunicación y Redes",
+  "Patrocinios",
   "Comunicación y Marketing",
   "Vinculación",
   "Logística",
@@ -31,7 +33,19 @@ export async function POST(request: Request) {
     );
     const cv = formData.get("cv");
     const projectLink = String(formData.get("projectLink") ?? "").trim();
+    const profileTestAnswers = String(
+      formData.get("profileTestAnswers") ?? "",
+    ).trim();
+    const profileTestProfile = String(
+      formData.get("profileTestProfile") ?? "",
+    ).trim();
+    const profileTestRecommendedRoles = String(
+      formData.get("profileTestRecommendedRoles") ?? "",
+    ).trim();
     values.projectLink = projectLink;
+    values.profileTestAnswers = profileTestAnswers;
+    values.profileTestProfile = profileTestProfile;
+    values.profileTestRecommendedRoles = profileTestRecommendedRoles;
 
     const missingField = requiredFields.find((field) => !values[field]);
 
@@ -161,6 +175,9 @@ export async function POST(request: Request) {
         email: values.email,
         fullName: values.fullName,
         phone: values.phone,
+        profileTestAnswers: values.profileTestAnswers,
+        profileTestProfile: values.profileTestProfile,
+        profileTestRecommendedRoles: values.profileTestRecommendedRoles,
         progressAnswer: values.progress,
         projectLink: values.projectLink,
       });
@@ -209,6 +226,7 @@ function buildEmailHtml(values: Record<string, string>) {
       <p><strong>Teléfono:</strong> ${escapeHtml(values.phone)}</p>
       <p><strong>Carrera:</strong> ${escapeHtml(values.career)}</p>
       <p><strong>Coordinación:</strong> ${escapeHtml(values.coordination)}</p>
+      ${buildProfileTestHtml(values)}
       <p><strong>¿Qué está construyendo actualmente?</strong></p>
       <p>${escapeHtml(values.why).replace(/\n/g, "<br />")}</p>
       <p><strong>¿Qué avances o resultados ha logrado hasta ahora?</strong></p>
@@ -220,6 +238,60 @@ function buildEmailHtml(values: Record<string, string>) {
       }
     </div>
   `;
+}
+
+function buildProfileTestHtml(values: Record<string, string>) {
+  if (!values.profileTestProfile) {
+    return "";
+  }
+
+  return `
+    <hr style="border: 0; border-top: 1px solid #ddd; margin: 24px 0;" />
+    <h2>Test rápido de perfil</h2>
+    <p><strong>Perfil detectado:</strong> ${escapeHtml(values.profileTestProfile)}</p>
+    <p><strong>Cargos recomendados:</strong> ${escapeHtml(values.profileTestRecommendedRoles)}</p>
+    ${buildProfileTestAnswersHtml(values.profileTestAnswers)}
+  `;
+}
+
+function buildProfileTestAnswersHtml(rawAnswers: string) {
+  if (!rawAnswers) {
+    return "";
+  }
+
+  try {
+    const parsed = JSON.parse(rawAnswers) as unknown;
+
+    if (!Array.isArray(parsed)) {
+      return "";
+    }
+
+    const items = parsed
+      .map((item) => {
+        if (!item || typeof item !== "object") {
+          return "";
+        }
+
+        const answer = item as Record<string, unknown>;
+        const question = String(answer.question ?? "");
+        const option = String(answer.option ?? "");
+        const response = String(answer.answer ?? "");
+        const profile = String(answer.profile ?? "");
+
+        return `
+          <li>
+            <strong>${escapeHtml(question)}</strong><br />
+            ${escapeHtml(option)}) ${escapeHtml(response)}
+            <br /><em>${escapeHtml(profile)}</em>
+          </li>
+        `;
+      })
+      .join("");
+
+    return items ? `<ol>${items}</ol>` : "";
+  } catch {
+    return `<p><strong>Respuestas:</strong> ${escapeHtml(rawAnswers)}</p>`;
+  }
 }
 
 function escapeHtml(value: string) {

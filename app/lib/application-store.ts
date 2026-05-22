@@ -19,6 +19,9 @@ export type CandidateApplication = {
   fullName: string;
   id: string;
   phone: string;
+  profileTestAnswers?: string;
+  profileTestProfile?: string;
+  profileTestRecommendedRoles?: string;
   progressAnswer: string;
   projectLink: string;
   scoreClarity: number;
@@ -41,6 +44,9 @@ type CreateCandidateInput = {
   email: string;
   fullName: string;
   phone: string;
+  profileTestAnswers?: string;
+  profileTestProfile?: string;
+  profileTestRecommendedRoles?: string;
   progressAnswer: string;
   projectLink: string;
 };
@@ -79,6 +85,9 @@ export async function createCandidateApplication(input: CreateCandidateInput) {
     fullName: input.fullName,
     id,
     phone: input.phone,
+    profileTestAnswers: input.profileTestAnswers,
+    profileTestProfile: input.profileTestProfile,
+    profileTestRecommendedRoles: input.profileTestRecommendedRoles,
     progressAnswer: input.progressAnswer,
     projectLink: input.projectLink,
     status: "pending",

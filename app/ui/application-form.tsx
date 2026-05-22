@@ -4,6 +4,19 @@ import { FormEvent, KeyboardEvent, ReactNode, useRef, useState } from "react";
 
 type ApplicationFormProps = {
   coordinations: string[];
+  profileTestResult?: ProfileTestResult;
+};
+
+export type ProfileTestResult = {
+  answers: Array<{
+    answer: string;
+    option: string;
+    profile: "Estratégico" | "Creativo" | "Conector" | "Ejecutor";
+    question: string;
+    questionId: string;
+  }>;
+  profile: "Estratégico" | "Creativo" | "Conector" | "Ejecutor";
+  recommendedRoles: string[];
 };
 
 type FormStatus = "idle" | "sending" | "success" | "error";
@@ -18,7 +31,10 @@ const pasteWarning =
 const successMessage =
   "Gracias por dar el primer paso para formar parte de la Mesa de Líderes COPARMEX.\n\nTu información será revisada por la mesa directiva. Este proceso prioriza perfiles con iniciativa real, dirección clara y evidencia de construcción.\n\nEn caso de que tu perfil avance a la siguiente fase, nos pondremos en contacto contigo por correo.\n\nMientras tanto, sigue construyendo. Eso también habla por ti.";
 
-export function ApplicationForm({ coordinations }: ApplicationFormProps) {
+export function ApplicationForm({
+  coordinations,
+  profileTestResult,
+}: ApplicationFormProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [message, setMessage] = useState("");
@@ -158,6 +174,25 @@ export function ApplicationForm({ coordinations }: ApplicationFormProps) {
 
   return (
     <form className="form-panel" onSubmit={handleSubmit}>
+      {profileTestResult ? (
+        <>
+          <input
+            name="profileTestProfile"
+            type="hidden"
+            value={profileTestResult.profile}
+          />
+          <input
+            name="profileTestRecommendedRoles"
+            type="hidden"
+            value={profileTestResult.recommendedRoles.join(", ")}
+          />
+          <input
+            name="profileTestAnswers"
+            type="hidden"
+            value={JSON.stringify(profileTestResult.answers)}
+          />
+        </>
+      ) : null}
       <div className="mb-8 flex flex-col gap-3 border-b border-white/10 pb-7 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#5de0e6]">

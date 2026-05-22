@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { ApplicationForm } from "./ui/application-form";
 import { CoordinationCarousel } from "./ui/coordination-carousel";
 import { ExperienceCopyCarousel } from "./ui/experience-copy-carousel";
 import { IntroHero } from "./ui/intro-hero";
+import { ProfileTestGate } from "./ui/profile-test-gate";
 import { SplineBackground } from "./ui/spline-background";
 
 const benefits = [
@@ -194,7 +194,7 @@ export default function Home() {
               <LogoGrid />
               <MaiaTrustCopy />
             </div>
-            <ApplicationForm coordinations={coordinationNames} />
+            <ProfileTestGate coordinations={coordinationNames} />
           </div>
           </div>
         </section>
