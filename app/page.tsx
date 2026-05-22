@@ -143,6 +143,7 @@ export default function Home() {
           id="postulacion"
         >
           <SelectionProcess />
+          <ProcessDetails />
           <BuildPathBlock />
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <div className="sticky top-10 hidden lg:block">
@@ -239,6 +240,66 @@ function SelectionProcess() {
               <p>{phase.text}</p>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProcessDetails() {
+  const steps = [
+    {
+      title: "Agenda tu entrevista",
+      text: "Recibirás un enlace para elegir el día y horario que mejor se adapte a ti.",
+    },
+    {
+      title: "Confirmación",
+      text: "Te enviaremos un recordatorio 3 horas antes para confirmar tu asistencia.",
+    },
+    {
+      title: "Entrevista estratégica",
+      text: "20–35 min divididos en:",
+      items: [
+        "Presentación",
+        "Preguntas y conversación",
+        "Caso práctico aplicado al cargo",
+      ],
+    },
+    {
+      title: "Revisión de perfil",
+      text: "Evaluamos experiencia, iniciativa, visión y compatibilidad con la coordinación.",
+    },
+    {
+      title: "Resultado final",
+      text: "Recibirás un mensaje con el resultado y los siguientes pasos del proceso.",
+    },
+  ];
+
+  return (
+    <div className="process-details mx-auto mb-24 max-w-7xl">
+      <div className="process-details-heading">
+        <p className="section-kicker">¿CÓMO FUNCIONA EL PROCESO?</p>
+        <p>Conoce cómo funciona cada etapa del proceso de selección.</p>
+      </div>
+
+      <div className="process-details-track">
+        {steps.map((step, index) => (
+          <article className="process-detail-card" key={step.title}>
+            <span className="process-detail-number" aria-hidden="true">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="process-detail-content">
+              <h3>{step.title.toUpperCase()}</h3>
+              <p>{step.text}</p>
+              {step.items ? (
+                <ul>
+                  {step.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          </article>
         ))}
       </div>
     </div>
