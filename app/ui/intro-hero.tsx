@@ -82,10 +82,17 @@ export function IntroHero() {
             Forma parte de la Mesa de Capítulo Universitario COPARMEX
           </h1>
 
+          <p className="mx-auto mt-5 max-w-3xl text-xs font-semibold uppercase tracking-[0.22em] text-[#e8dfcf]/72 sm:text-sm lg:mx-0">
+            Tec de Monterrey · Campus Ciudad de México
+          </p>
+
           <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-[#e8dfcf]/85 sm:text-2xl sm:leading-10 lg:mx-0">
-            Entra a una comunidad selectiva donde el liderazgo joven se prueba
-            en proyectos reales, alianzas estratégicas y decisiones que abren
-            camino dentro del ecosistema empresarial.
+            Somos una comunidad de estudiantes con propósito. Juntos
+            desarrollamos liderazgo real, ejecutamos proyectos con impacto y nos
+            conectamos directamente con empresarios, directivos y socios de uno
+            de los organismos empresariales más importantes de México.
+            Construimos desde adentro — con criterio, con acción y con una red
+            que pocos tienen a nuestra edad.
           </p>
           <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-6 text-[#e8dfcf]/75 sm:text-base lg:mx-0">
             Liderazgo enfocado en transformación, ejecución y construcción

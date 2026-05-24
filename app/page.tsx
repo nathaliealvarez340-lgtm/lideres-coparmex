@@ -216,17 +216,16 @@ function BuildPathBlock() {
         </div>
         <div className="build-path-copy">
           <p>
-            Este espacio es para quienes ya están construyendo algo: un
-            proyecto, una idea, una iniciativa real.
+            No buscamos intención vacía. Buscamos dirección, criterio y
+            compromiso.
           </p>
           <p>
-            No buscamos intención vacía. Buscamos dirección, criterio y
-            compromiso para convertir ideas en acción.
+            Trabajamos con empresarios, directivos y socios COPARMEX que ya
+            están transformando la economía de México. Generamos oportunidades
+            reales, ejecutamos proyectos con impacto y construimos juntos la
+            generación empresarial que el país necesita.
           </p>
-          <strong>
-            Si ya estás construyendo algo, este es el lugar para llevarlo más
-            lejos.
-          </strong>
+          <strong>Si tienes algo que aportar, aquí lo hacemos crecer.</strong>
         </div>
       </div>
     </div>
@@ -237,11 +236,11 @@ function CoparmexChapterInfo() {
   const items = [
     {
       title: "¿Qué es COPARMEX?",
-      text: "COPARMEX es una organización empresarial que busca fortalecer el desarrollo económico, el liderazgo, la participación empresarial y la construcción de una sociedad más competitiva, ética y sostenible en México.",
+      text: "COPARMEX es uno de los organismos empresariales más importantes de México. Agrupa a más de 36,000 empresas en todo el país y opera con total independencia del gobierno, lo que le permite defender con libertad la libre empresa, el estado de derecho y la responsabilidad social. Su misión es construir un México con más y mejores empresas, donde el emprendimiento y la innovación sean los motores del desarrollo. Nosotros somos parte de esa misión desde la universidad.",
     },
     {
       title: "Objetivo del capítulo",
-      text: "Formar estudiantes con iniciativa, pensamiento estratégico y capacidad de ejecución, conectándolos con empresarios, oportunidades, innovación y experiencias que impulsen su crecimiento profesional y personal.",
+      text: "Construimos una comunidad universitaria comprometida con el bien común. Impulsamos el emprendimiento, la innovación y la creación de más y mejores empresas, de la mano de COPARMEX y con el respaldo del Tec de Monterrey Campus Ciudad de México. Trabajamos para formar agentes de cambio que generen nuevas oportunidades — para ellos mismos y para México.",
     },
   ];
 

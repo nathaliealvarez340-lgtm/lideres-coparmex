@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const slides = [
-  "La Mesa de Líderes COPARMEX reúne a estudiantes con iniciativa, visión y disciplina para transformar ideas en proyectos con estándar ejecutivo. No es un club de asistencia: es un punto de encuentro para quienes quieren aprender a operar, comunicar, negociar y representar con criterio.",
+  "Un espacio para estudiantes con iniciativa y algo que demostrar. En la Mesa Directiva trabajamos juntos con objetivos claros, roles definidos y proyectos reales. Si tienes una idea que quieres impulsar, un proyecto en mente o la determinación de construir algo antes de graduarte — aquí encontramos la red, los aliados y los espacios para hacerlo realidad. No venimos a observar: venimos a construir.",
   "El Capítulo Universitario de COPARMEX es una comunidad de estudiantes que busca desarrollar liderazgo, visión empresarial y capacidad de impacto a través de proyectos, eventos, alianzas y experiencias conectadas con el entorno profesional y empresarial real.",
 ];
 
