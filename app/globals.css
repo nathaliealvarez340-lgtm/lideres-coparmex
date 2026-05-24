@@ -720,17 +720,17 @@ body {
 
 .coparmex-info-card h3 {
   color: #fff8e8;
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-size: clamp(1.12rem, 1.55vw, 1.42rem);
   font-weight: 800;
   letter-spacing: 0;
-  line-height: 1.08;
+  line-height: 1.12;
 }
 
 .coparmex-info-card p {
   margin-top: 14px;
   color: rgba(232, 223, 207, 0.76);
-  font-size: clamp(0.98rem, 1.2vw, 1.06rem);
-  line-height: 1.7;
+  font-size: clamp(0.9rem, 1.02vw, 0.98rem);
+  line-height: 1.58;
 }
 
 @keyframes feature-enter {
