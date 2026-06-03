@@ -13,6 +13,7 @@ const coordinationSignals: Record<string, string[]> = {
   Administrativa: ["organice", "organizo", "documentacion", "presupuesto", "registro", "proceso", "orden"],
   "Comunicacion y Marketing": ["contenido", "marca", "campana", "redes", "comunicacion", "marketing", "audiencia"],
   Logistica: ["evento", "operacion", "agenda", "proveedor", "sede", "tiempos", "recursos"],
+  "Miembro COPARMEX": ["comunidad", "evento", "proyecto", "taller", "red", "networking", "liderazgo", "aprendizaje", "ecosistema"],
   Patrocinios: ["aliado", "patrocinio", "venta", "cliente", "propuesta", "negociacion", "empresa"],
 };
 

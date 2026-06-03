@@ -16,6 +16,13 @@ const statusLabels: Record<CandidateStatus, string> = {
   reviewed: "Revisado",
   shortlisted: "Shortlisted",
 };
+const knownCoordinations = [
+  "Comunicación y Redes",
+  "Patrocinios",
+  "Vinculación",
+  "Miembro COPARMEX",
+  "Logística",
+];
 
 export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
   const [applications, setApplications] = useState(initialApplications);
@@ -31,6 +38,9 @@ export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
     null;
   const coordinations = Array.from(
     new Set(applications.map((application) => application.coordination)),
+  );
+  const coordinationOptions = Array.from(
+    new Set([...knownCoordinations, ...coordinations]),
   );
   const filteredApplications = useMemo(() => {
     const query = search.toLowerCase().trim();
@@ -152,7 +162,7 @@ export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
                 value={coordinationFilter}
               >
                 <option value="all">Todas las coordinaciones</option>
-                {coordinations.map((coordination) => (
+                {coordinationOptions.map((coordination) => (
                   <option key={coordination} value={coordination}>
                     {coordination}
                   </option>

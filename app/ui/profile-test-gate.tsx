@@ -171,6 +171,7 @@ const recommendedRoles: Record<ProfileType, string[]> = {
   Conector: ["Vinculación", "Relaciones", "Comunidad"],
   Ejecutor: ["Logística", "Operación", "Producción"],
 };
+const memberEntryRole = "Miembro COPARMEX";
 
 const profileOrder: ProfileType[] = [
   "Estratégico",
@@ -301,10 +302,18 @@ function getProfileResult(answers: ProfileAnswer[]): ProfileTestResult {
   const profile = profileOrder.reduce((currentTop, profile) =>
     scores[profile] > scores[currentTop] ? profile : currentTop,
   );
+  const topScore = scores[profile];
+  const topProfiles = profileOrder.filter(
+    (profileType) => scores[profileType] === topScore,
+  );
+  const hasBalancedResult = topProfiles.length > 1 || topScore <= 2;
+  const roles = hasBalancedResult
+    ? [...recommendedRoles[profile], memberEntryRole]
+    : recommendedRoles[profile];
 
   return {
     answers,
     profile,
-    recommendedRoles: recommendedRoles[profile],
+    recommendedRoles: roles,
   };
 }

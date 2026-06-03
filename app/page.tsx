@@ -77,6 +77,21 @@ const coordinations = [
     ],
   },
   {
+    emoji: "👥",
+    name: "Miembro COPARMEX",
+    shortDescription:
+      "Participa en proyectos, eventos, iniciativas y experiencias del capítulo mientras desarrollas tu red de contactos, liderazgo y visión empresarial.",
+    description:
+      "Los Miembros COPARMEX forman parte activa de la comunidad del capítulo. Participan en eventos, proyectos, talleres y actividades estratégicas, conectándose con empresarios, estudiantes y líderes que comparten el interés por construir, aprender y generar impacto. Es la mejor forma de involucrarte, crecer profesionalmente y conocer el ecosistema antes de asumir una coordinación.",
+    benefits: [
+      "Acceso preferente a actividades del capítulo.",
+      "Participación en proyectos e iniciativas especiales.",
+      "Networking con empresarios y estudiantes destacados.",
+      "Desarrollo de habilidades profesionales y liderazgo.",
+      "Posibilidad de integrarte a futuras coordinaciones.",
+    ],
+  },
+  {
     emoji: "🛠️",
     name: "Logística",
     description:
