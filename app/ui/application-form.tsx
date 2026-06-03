@@ -233,7 +233,7 @@ export function ApplicationForm({
         </label>
 
         <div className="field-shell sm:col-span-2">
-          <span>¿Qué estás construyendo actualmente?</span>
+          <span>¿Cuál es tu principal motivación para formar parte del capítulo?</span>
           <div className="rich-editor-shell">
             <div className="editor-toolbar" aria-label="Herramientas del editor">
               <ToolbarButton label="Negrita" onClick={() => runCommand("bold")}>
