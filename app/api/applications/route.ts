@@ -127,12 +127,14 @@ export async function POST(request: Request) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-      },
+      },git
       body: JSON.stringify({
         from: fromEmail,
         to: [
           "nathaliealvarez340@gmail.com",
           "rpolancomaldonado@gmail.com",
+          "a01666314@tec.mx",
+          "a01667549@tec.mx",
         ],
         reply_to: values.email,
         subject: "Nueva postulación | Mesa de Líderes COPARMEX",
