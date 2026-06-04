@@ -22,7 +22,6 @@ export type CandidateApplication = {
   profileTestAnswers?: string;
   profileTestProfile?: string;
   profileTestRecommendedRoles?: string;
-  progressAnswer: string;
   projectLink: string;
   scoreClarity: number;
   scoreCommitment: number;
@@ -47,7 +46,6 @@ type CreateCandidateInput = {
   profileTestAnswers?: string;
   profileTestProfile?: string;
   profileTestRecommendedRoles?: string;
-  progressAnswer: string;
   projectLink: string;
 };
 
@@ -68,7 +66,7 @@ export async function createCandidateApplication(input: CreateCandidateInput) {
   const scores = scoreCandidate({
     coordination: input.coordination,
     currentProjectAnswer: input.currentProjectAnswer,
-    progressAnswer: input.progressAnswer,
+    progressAnswer: input.currentProjectAnswer,
     projectLink: input.projectLink,
   });
   const candidate: CandidateApplication = {
@@ -88,7 +86,6 @@ export async function createCandidateApplication(input: CreateCandidateInput) {
     profileTestAnswers: input.profileTestAnswers,
     profileTestProfile: input.profileTestProfile,
     profileTestRecommendedRoles: input.profileTestRecommendedRoles,
-    progressAnswer: input.progressAnswer,
     projectLink: input.projectLink,
     status: "pending",
     wordCount: countWords(input.currentProjectAnswer),

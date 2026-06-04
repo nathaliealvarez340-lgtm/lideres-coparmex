@@ -306,10 +306,6 @@ function CandidateProfile({
         <h3>Qué está construyendo</h3>
         <p>{application.currentProjectAnswer}</p>
       </section>
-      <section className="admin-answer-block">
-        <h3>Avances o resultados</h3>
-        <p>{application.progressAnswer}</p>
-      </section>
 
       <label className="admin-notes">
         Notas internas

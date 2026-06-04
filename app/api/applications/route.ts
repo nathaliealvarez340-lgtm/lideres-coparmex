@@ -7,7 +7,6 @@ const requiredFields = [
   "career",
   "coordination",
   "why",
-  "progress",
 ];
 
 const allowedCoordinations = [
@@ -78,16 +77,6 @@ export async function POST(request: Request) {
       );
     }
 
-    if (countWords(values.progress) < 40) {
-      return Response.json(
-        {
-          message:
-            "Tu respuesta sobre avances debe tener al menos 40 palabras mínimas.",
-        },
-        { status: 400 },
-      );
-    }
-
     if (!(cv instanceof File) || cv.size === 0) {
       return Response.json(
         { message: "Sube tu CV en formato PDF o PNG." },
@@ -127,7 +116,7 @@ export async function POST(request: Request) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-      },git
+      },
       body: JSON.stringify({
         from: fromEmail,
         to: [
@@ -184,7 +173,6 @@ export async function POST(request: Request) {
         profileTestAnswers: values.profileTestAnswers,
         profileTestProfile: values.profileTestProfile,
         profileTestRecommendedRoles: values.profileTestRecommendedRoles,
-        progressAnswer: values.progress,
         projectLink: values.projectLink,
       });
     } catch (error) {
@@ -215,10 +203,6 @@ function isAllowedFile(file: File) {
   );
 }
 
-function countWords(text: string) {
-  return text.match(/[\p{L}\p{N}]+(?:['’-][\p{L}\p{N}]+)*/gu)?.length ?? 0;
-}
-
 function getContentTypeFromName(fileName: string) {
   return fileName.toLowerCase().endsWith(".png") ? "image/png" : "application/pdf";
 }
@@ -235,8 +219,6 @@ function buildEmailHtml(values: Record<string, string>) {
       ${buildProfileTestHtml(values)}
       <p><strong>¿Qué está construyendo actualmente?</strong></p>
       <p>${escapeHtml(values.why).replace(/\n/g, "<br />")}</p>
-      <p><strong>¿Qué avances o resultados ha logrado hasta ahora?</strong></p>
-      <p>${escapeHtml(values.progress).replace(/\n/g, "<br />")}</p>
       ${
         values.projectLink
           ? `<p><strong>Link a proyecto, portafolio o avance:</strong> <a href="${escapeHtml(values.projectLink)}">${escapeHtml(values.projectLink)}</a></p>`

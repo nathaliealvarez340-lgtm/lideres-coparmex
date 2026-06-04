@@ -25,7 +25,6 @@ const acceptedTypes = ["application/pdf", "image/png"];
 const acceptedExtensions = [".pdf", ".png"];
 const maxFileSize = 4.4 * 1024 * 1024;
 const minimumWords = 100;
-const progressMinimumWords = 40;
 const pasteWarning =
   "Para asegurar una respuesta auténtica, este campo debe escribirse manualmente.";
 const successMessage =
@@ -40,11 +39,9 @@ export function ApplicationForm({
   const [message, setMessage] = useState("");
   const [fileName, setFileName] = useState("");
   const [pasteNotice, setPasteNotice] = useState("");
-  const [progressText, setProgressText] = useState("");
   const [whyText, setWhyText] = useState("");
 
   const wordCount = countWords(whyText);
-  const progressWordCount = countWords(progressText);
 
   function runCommand(command: string, value?: string) {
     editorRef.current?.focus();
@@ -80,18 +77,9 @@ export function ApplicationForm({
       return;
     }
 
-    if (countWords(progressText) < progressMinimumWords) {
-      setStatus("error");
-      setMessage(
-        "Tu respuesta sobre avances debe tener al menos 40 palabras mínimas.",
-      );
-      return;
-    }
-
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.set("why", cleanWhy);
-    formData.set("progress", normalizeText(progressText));
     const file = formData.get("cv");
 
     if (!(file instanceof File) || file.size === 0) {
@@ -136,7 +124,6 @@ export function ApplicationForm({
         editorRef.current.innerHTML = "";
       }
       setWhyText("");
-      setProgressText("");
       setPasteNotice("");
       setFileName("");
       setStatus("success");
@@ -336,21 +323,6 @@ export function ApplicationForm({
           </p>
           {pasteNotice ? <p className="paste-notice">{pasteNotice}</p> : null}
         </div>
-
-        <label className="field-shell sm:col-span-2">
-          <span>¿Qué proyectos o actividades has logrado desarrollar?</span>
-          <textarea
-            className="field-control simple-textarea"
-            name="progress"
-            onChange={(event) => setProgressText(event.currentTarget.value)}
-            placeholder="Comparte avances, aprendizajes, validaciones, métricas, clientes, comunidad, prototipos, eventos, publicaciones o cualquier evidencia de progreso."
-            required
-            value={progressText}
-          />
-          <p className="text-sm text-[#e8dfcf]/62">
-            {progressWordCount} / {progressMinimumWords} palabras mínimas
-          </p>
-        </label>
 
         <Field
           className="sm:col-span-2"
