@@ -20,6 +20,7 @@ const knownCoordinations = [
   "Comunicación y Redes",
   "Patrocinios",
   "Vinculación",
+  "Responsabilidad Social",
   "Miembro COPARMEX",
   "Logística",
 ];

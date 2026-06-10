@@ -14,6 +14,7 @@ const allowedCoordinations = [
   "Patrocinios",
   "Comunicación y Marketing",
   "Vinculación",
+  "Responsabilidad Social",
   "Miembro COPARMEX",
   "Logística",
 ];

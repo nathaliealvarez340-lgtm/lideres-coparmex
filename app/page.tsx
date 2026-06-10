@@ -77,6 +77,21 @@ const coordinations = [
     ],
   },
   {
+    emoji: "🌱",
+    name: "Responsabilidad Social",
+    shortDescription:
+      "Impulsa proyectos con impacto social, ética empresarial y compromiso comunitario dentro del capítulo.",
+    description:
+      "Responsabilidad Social conecta el liderazgo estudiantil con iniciativas que generan impacto positivo. Este rol impulsa proyectos, alianzas y acciones orientadas al bien común, la sostenibilidad, la ética empresarial y la participación responsable dentro y fuera del campus.",
+    benefits: [
+      "Desarrollas liderazgo con propósito.",
+      "Impulsas proyectos de impacto real.",
+      "Conectas empresa, comunidad y estudiantes.",
+      "Fortaleces visión social y ética empresarial.",
+      "Conviertes ideas en acciones con valor público.",
+    ],
+  },
+  {
     emoji: "👥",
     name: "Miembro COPARMEX",
     shortDescription:
