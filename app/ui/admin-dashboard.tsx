@@ -17,12 +17,12 @@ const statusLabels: Record<CandidateStatus, string> = {
   shortlisted: "Shortlisted",
 };
 const knownCoordinations = [
-  "Comunicación y Redes",
-  "Patrocinios",
-  "Vinculación",
-  "Responsabilidad Social",
   "Miembro COPARMEX",
   "Logística",
+  "Patrocinios",
+  "Comunicación y Redes",
+  "Vinculación",
+  "Responsabilidad Social",
 ];
 
 export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
@@ -131,7 +131,7 @@ export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
           <StatCard label="Postulantes" value={applications.length} />
           <StatCard label="Pendientes" value={pendingCount} />
           <StatCard label="Score promedio" value={averageScore} />
-          <StatCard label="Coordinaciones" value={coordinations.length} />
+          <StatCard label="Áreas" value={coordinations.length} />
         </section>
 
         <section className="admin-top-grid">
@@ -162,7 +162,7 @@ export function AdminDashboard({ initialApplications }: AdminDashboardProps) {
                 onChange={(event) => setCoordinationFilter(event.currentTarget.value)}
                 value={coordinationFilter}
               >
-                <option value="all">Todas las coordinaciones</option>
+                <option value="all">Todas las áreas</option>
                 {coordinationOptions.map((coordination) => (
                   <option key={coordination} value={coordination}>
                     {coordination}

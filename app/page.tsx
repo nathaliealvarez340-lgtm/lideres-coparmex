@@ -38,85 +38,93 @@ const benefits = [
 
 const coordinations = [
   {
-    emoji: "📣",
-    name: "Comunicación y Redes",
+    emoji: "👥",
+    name: "Miembro COPARMEX",
+    shortDescription:
+      "Forma parte activa de la comunidad, participa en proyectos, eventos y experiencias del capítulo.",
     description:
-      "Construye la presencia pública del capítulo a través de narrativa, contenido, identidad visual y comunicación estratégica.",
+      "Como Miembro COPARMEX te integras al ecosistema del capítulo para participar en actividades, colaborar en iniciativas y desarrollar habilidades de liderazgo, networking y ejecución dentro de una comunidad empresarial universitaria.",
     benefits: [
-      "Fortaleces marca y posicionamiento.",
-      "Creas contenido con intención.",
-      "Aprendes comunicación institucional.",
-      "Documentas eventos y logros.",
-      "Conviertes ideas en mensajes que conectan.",
+      "Participas en proyectos y eventos reales.",
+      "Desarrollas liderazgo y visión empresarial.",
+      "Conectas con estudiantes, empresarios y aliados.",
+      "Exploras distintas áreas antes de especializarte.",
+      "Construyes experiencia dentro del ecosistema COPARMEX.",
+    ],
+  },
+  {
+    emoji: "🛠️",
+    name: "Logística",
+    shortDescription:
+      "Apoya la planeación, organización y ejecución de eventos y experiencias del capítulo.",
+    description:
+      "El área de Logística coordina tiempos, espacios, materiales, proveedores y operación para que cada actividad se ejecute con orden, precisión y buena experiencia para los asistentes.",
+    benefits: [
+      "Aprendes ejecución operativa real.",
+      "Coordinas eventos y experiencias.",
+      "Resuelves imprevistos con criterio.",
+      "Desarrollas planeación y organización.",
+      "Haces que las ideas sucedan.",
     ],
   },
   {
     emoji: "🪙",
     name: "Patrocinios",
+    shortDescription:
+      "Apoya la gestión de alianzas, marcas y recursos para fortalecer los proyectos del capítulo.",
     description:
-      "Gestiona alianzas con empresas, marcas y aliados estratégicos para generar recursos, visibilidad y valor para el capítulo.",
+      "El área de Patrocinios conecta al capítulo con empresas, marcas y aliados estratégicos para generar recursos, colaboraciones y propuestas de valor que hagan crecer el impacto de cada iniciativa.",
     benefits: [
-      "Desarrollas negociación real.",
-      "Conectas con empresas y tomadores de decisión.",
-      "Aprendes a vender propuestas de valor.",
+      "Aprendes negociación y prospección.",
+      "Conectas con empresas y aliados.",
+      "Desarrollas propuestas de valor.",
       "Fortaleces relaciones institucionales.",
-      "Generas impacto medible para el capítulo.",
+      "Impulsas recursos para proyectos reales.",
+    ],
+  },
+  {
+    emoji: "📣",
+    name: "Comunicación y Redes",
+    shortDescription:
+      "Apoya la presencia digital, narrativa, contenido e imagen pública del capítulo.",
+    description:
+      "El área de Comunicación y Redes construye la voz, imagen y presencia pública del capítulo a través de contenido, diseño, cobertura de eventos, storytelling y comunicación estratégica.",
+    benefits: [
+      "Creas contenido con intención.",
+      "Fortaleces marca y posicionamiento.",
+      "Desarrollas comunicación estratégica.",
+      "Documentas eventos y logros.",
+      "Conviertes ideas en mensajes que conectan.",
     ],
   },
   {
     emoji: "🤝",
     name: "Vinculación",
+    shortDescription:
+      "Apoya la conexión entre talento, comunidad, aliados y oportunidades dentro del ecosistema empresarial.",
     description:
-      "Conecta talento, miembros, aliados y oportunidades para ampliar la red del capítulo y fortalecer su impacto dentro y fuera del campus.",
+      "El área de Vinculación fortalece la red del capítulo conectando estudiantes, miembros, empresarios, aliados y oportunidades para ampliar el impacto de la comunidad dentro y fuera del campus.",
     benefits: [
+      "Construyes networking con propósito.",
       "Identificas perfiles de alto potencial.",
-      "Construyes comunidad estratégica.",
-      "Fortaleces networking con propósito.",
-      "Impulsas reclutamiento y alianzas.",
-      "Conectas personas con oportunidades reales.",
+      "Conectas personas con oportunidades.",
+      "Apoyas reclutamiento e integración.",
+      "Fortaleces comunidad estratégica.",
     ],
   },
   {
     emoji: "🌱",
     name: "Responsabilidad Social",
     shortDescription:
-      "Impulsa proyectos con impacto social, ética empresarial y compromiso comunitario dentro del capítulo.",
+      "Apoya proyectos con impacto social, ética empresarial y compromiso comunitario.",
     description:
-      "Responsabilidad Social conecta el liderazgo estudiantil con iniciativas que generan impacto positivo. Este rol impulsa proyectos, alianzas y acciones orientadas al bien común, la sostenibilidad, la ética empresarial y la participación responsable dentro y fuera del campus.",
+      "El área de Responsabilidad Social impulsa iniciativas que conectan liderazgo estudiantil con impacto positivo, sostenibilidad, ética empresarial y acciones orientadas al bien común dentro y fuera del campus.",
     benefits: [
       "Desarrollas liderazgo con propósito.",
       "Impulsas proyectos de impacto real.",
       "Conectas empresa, comunidad y estudiantes.",
       "Fortaleces visión social y ética empresarial.",
       "Conviertes ideas en acciones con valor público.",
-    ],
-  },
-  {
-    emoji: "👥",
-    name: "Miembro COPARMEX",
-    shortDescription:
-      "Participa en proyectos, eventos, iniciativas y experiencias del capítulo mientras desarrollas tu red de contactos, liderazgo y visión empresarial.",
-    description:
-      "Los Miembros COPARMEX forman parte activa de la comunidad del capítulo. Participan en eventos, proyectos, talleres y actividades estratégicas, conectándose con empresarios, estudiantes y líderes que comparten el interés por construir, aprender y generar impacto. Es la mejor forma de involucrarte, crecer profesionalmente y conocer el ecosistema antes de asumir una coordinación.",
-    benefits: [
-      "Acceso preferente a actividades del capítulo.",
-      "Participación en proyectos e iniciativas especiales.",
-      "Networking con empresarios y estudiantes destacados.",
-      "Desarrollo de habilidades profesionales y liderazgo.",
-      "Posibilidad de integrarte a futuras coordinaciones.",
-    ],
-  },
-  {
-    emoji: "🛠️",
-    name: "Logística",
-    description:
-      "Coordina la operación detrás de cada experiencia: espacios, tiempos, recursos y ejecución para que todo funcione con precisión.",
-    benefits: [
-      "Desarrollas criterio operativo.",
-      "Aprendes a resolver presión real.",
-      "Coordinas personas, tiempos y recursos.",
-      "Fortaleces planeación y ejecución.",
-      "Conviertes ideas en experiencias funcionales.",
     ],
   },
 ];
@@ -176,13 +184,13 @@ export default function Home() {
 
             <div className="mt-20 grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
               <div>
-                <p className="section-kicker">Coordinaciones operativas</p>
+                <p className="section-kicker">Áreas de trabajo</p>
                 <h2 className="mt-5 text-3xl font-semibold leading-tight tracking-normal sm:text-5xl">
-                  Elige una trinchera. Construye desde ahí.
+                  Elige dónde aportar. Construye desde ahí.
                 </h2>
                 <p className="mt-6 text-lg leading-8 text-[#e8dfcf]/72">
-                  Cada coordinación sostiene una parte crítica de la mesa:
-                  narrativa, alianzas, control y ejecución.
+                  Cada área sostiene una parte crítica del capítulo: comunidad,
+                  operación, alianzas, comunicación, vinculación e impacto.
                 </p>
               </div>
 
@@ -346,12 +354,12 @@ function ProcessDetails() {
       items: [
         "Presentación",
         "Preguntas y conversación",
-        "Caso práctico aplicado al cargo",
+        "Caso práctico aplicado al área",
       ],
     },
     {
       title: "Revisión de perfil",
-      text: "Evaluamos experiencia, iniciativa, visión y compatibilidad con la coordinación.",
+      text: "Evaluamos experiencia, iniciativa, visión y compatibilidad con el área de interés.",
     },
     {
       title: "Resultado final",

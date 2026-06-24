@@ -201,7 +201,7 @@ export function ApplicationForm({
         <Field label="Carrera" name="career" type="text" />
 
         <label className="field-shell sm:col-span-2">
-          <span>Coordinación operativa a la que deseas postularte</span>
+          <span>Área de interés</span>
           <select
             className="field-control"
             name="coordination"
@@ -209,7 +209,7 @@ export function ApplicationForm({
             defaultValue=""
           >
             <option value="" disabled>
-              Selecciona una coordinación
+              Selecciona tu área de interés
             </option>
             {coordinations.map((coordination) => (
               <option key={coordination} value={coordination}>
@@ -217,6 +217,10 @@ export function ApplicationForm({
               </option>
             ))}
           </select>
+          <p className="text-sm text-[#e8dfcf]/62">
+            Todas las postulaciones ingresan como miembro/staff; el área indica
+            dónde te gustaría aportar.
+          </p>
         </label>
 
         <div className="field-shell sm:col-span-2">

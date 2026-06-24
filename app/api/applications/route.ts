@@ -10,13 +10,12 @@ const requiredFields = [
 ];
 
 const allowedCoordinations = [
-  "Comunicación y Redes",
-  "Patrocinios",
-  "Comunicación y Marketing",
-  "Vinculación",
-  "Responsabilidad Social",
   "Miembro COPARMEX",
   "Logística",
+  "Patrocinios",
+  "Comunicación y Redes",
+  "Vinculación",
+  "Responsabilidad Social",
 ];
 
 const allowedFileTypes = ["application/pdf", "image/png"];
@@ -66,7 +65,7 @@ export async function POST(request: Request) {
 
     if (!allowedCoordinations.includes(values.coordination)) {
       return Response.json(
-        { message: "Selecciona una coordinación válida." },
+        { message: "Selecciona un área de interés válida." },
         { status: 400 },
       );
     }
@@ -128,6 +127,7 @@ export async function POST(request: Request) {
           "a01668994@tec.mx",
           " elias.mora2526@gmail.com",
           " dihegoerz@gmail.com",
+          "ortizpaola2905@gmail.com",
         ],
         reply_to: values.email,
         subject: "Nueva postulación | Mesa de Líderes COPARMEX",
@@ -216,7 +216,7 @@ function buildEmailHtml(values: Record<string, string>) {
       <p><strong>Correo:</strong> ${escapeHtml(values.email)}</p>
       <p><strong>Teléfono:</strong> ${escapeHtml(values.phone)}</p>
       <p><strong>Carrera:</strong> ${escapeHtml(values.career)}</p>
-      <p><strong>Coordinación:</strong> ${escapeHtml(values.coordination)}</p>
+      <p><strong>Área de interés:</strong> ${escapeHtml(values.coordination)}</p>
       ${buildProfileTestHtml(values)}
       <p><strong>¿Qué está construyendo actualmente?</strong></p>
       <p>${escapeHtml(values.why).replace(/\n/g, "<br />")}</p>
@@ -238,7 +238,7 @@ function buildProfileTestHtml(values: Record<string, string>) {
     <hr style="border: 0; border-top: 1px solid #ddd; margin: 24px 0;" />
     <h2>Test rápido de perfil</h2>
     <p><strong>Perfil detectado:</strong> ${escapeHtml(values.profileTestProfile)}</p>
-    <p><strong>Cargos recomendados:</strong> ${escapeHtml(values.profileTestRecommendedRoles)}</p>
+    <p><strong>Áreas recomendadas:</strong> ${escapeHtml(values.profileTestRecommendedRoles)}</p>
     ${buildProfileTestAnswersHtml(values.profileTestAnswers)}
   `;
 }

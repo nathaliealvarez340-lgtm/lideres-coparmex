@@ -48,7 +48,7 @@ export function CoordinationCarousel({
   }
 
   return (
-    <div className="carousel-wrapper" aria-label="Coordinaciones">
+    <div className="carousel-wrapper" aria-label="Áreas de trabajo">
       <button
         aria-expanded={isExpanded}
         className={`carousel-card coordination-feature-card ${
@@ -86,7 +86,7 @@ export function CoordinationCarousel({
 
       <div className="coordination-controls">
         <button
-          aria-label="Coordinacion anterior"
+          aria-label="Área anterior"
           onClick={goToPrevious}
           type="button"
         >
@@ -107,7 +107,7 @@ export function CoordinationCarousel({
         </div>
 
         <button
-          aria-label="Siguiente coordinacion"
+          aria-label="Siguiente área"
           onClick={goToNext}
           type="button"
         >
