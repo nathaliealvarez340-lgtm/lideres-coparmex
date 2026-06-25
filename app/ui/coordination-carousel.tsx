@@ -18,33 +18,41 @@ export function CoordinationCarousel({
 }: CoordinationCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
   const active = coordinations[activeIndex];
   const activeNumber = String(activeIndex + 1).padStart(2, "0");
 
   useEffect(() => {
+    if (isExpanded || isCardHovered) {
+      return;
+    }
+
     const interval = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % coordinations.length);
       setIsExpanded(false);
     }, 6500);
 
     return () => window.clearInterval(interval);
-  }, [coordinations.length]);
+  }, [coordinations.length, isCardHovered, isExpanded]);
 
   function goToPrevious() {
     setActiveIndex(
       (current) => (current - 1 + coordinations.length) % coordinations.length,
     );
     setIsExpanded(false);
+    setIsCardHovered(false);
   }
 
   function goToNext() {
     setActiveIndex((current) => (current + 1) % coordinations.length);
     setIsExpanded(false);
+    setIsCardHovered(false);
   }
 
   function goToIndex(index: number) {
     setActiveIndex(index);
     setIsExpanded(false);
+    setIsCardHovered(false);
   }
 
   return (
@@ -55,7 +63,19 @@ export function CoordinationCarousel({
           isExpanded ? "is-expanded" : ""
         }`}
         key={active.name}
-        onClick={() => setIsExpanded((current) => !current)}
+        onClick={() =>
+          setIsExpanded((current) => {
+            const next = !current;
+
+            if (!next) {
+              setIsCardHovered(false);
+            }
+
+            return next;
+          })
+        }
+        onPointerEnter={() => setIsCardHovered(true)}
+        onPointerLeave={() => setIsCardHovered(false)}
         type="button"
       >
         <span className="coordination-ghost-number" aria-hidden="true">

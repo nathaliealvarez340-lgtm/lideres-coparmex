@@ -804,9 +804,9 @@ body {
 .coordination-feature-card.is-expanded {
   height: 340px;
   min-height: 340px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 20px 26px 48px;
+  align-items: stretch;
+  justify-content: center;
+  padding: 26px 32px 50px;
   text-align: left;
 }
 
@@ -867,21 +867,25 @@ body {
 }
 
 .coordination-description-inner {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
 }
 
 .coordination-description p {
   color: rgba(232, 223, 207, 0.76);
-  font-size: 0.82rem;
-  line-height: 1.42;
+  font-size: clamp(0.92rem, 1.08vw, 1rem);
+  line-height: 1.5;
   text-align: left;
 }
 
 .coordination-description span {
   display: block;
-  margin-top: 9px;
+  margin-top: 12px;
   color: rgba(93, 224, 230, 0.82);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -890,12 +894,12 @@ body {
 .coordination-description ul {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 5px 14px;
-  margin-top: 8px;
+  gap: 8px 18px;
+  margin-top: 10px;
   padding: 0;
   color: rgba(232, 223, 207, 0.78);
-  font-size: 0.76rem;
-  line-height: 1.22;
+  font-size: clamp(0.82rem, 0.98vw, 0.9rem);
+  line-height: 1.32;
   list-style: none;
 }
 
@@ -918,7 +922,7 @@ body {
 
 .coordination-feature-card.is-expanded .coordination-description {
   grid-template-rows: 1fr;
-  margin-top: 10px;
+  margin-top: 16px;
   opacity: 1;
 }
 
@@ -1931,7 +1935,7 @@ body {
   .coordination-feature-card.is-expanded {
     height: 410px;
     min-height: 410px;
-    padding: 20px 20px 50px;
+    padding: 22px 20px 50px;
   }
 
   .coordination-feature-card h3 {
@@ -1947,12 +1951,13 @@ body {
 
   .coordination-description ul {
     grid-template-columns: 1fr;
-    gap: 5px;
-    font-size: 0.8rem;
+    gap: 6px;
+    font-size: 0.84rem;
+    line-height: 1.28;
   }
 
   .coordination-description p {
-    font-size: 0.84rem;
+    font-size: 0.9rem;
     line-height: 1.42;
   }
 

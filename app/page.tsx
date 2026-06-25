@@ -129,7 +129,9 @@ const coordinations = [
   },
 ];
 
-const coordinationNames = coordinations.map((coordination) => coordination.name);
+const coordinationNames = coordinations
+  .map((coordination) => coordination.name)
+  .filter((name) => name !== "Miembro COPARMEX");
 
 const partnerLogos = [
   { src: "/logos/coparmex-white.png", alt: "COPARMEX", className: "logo-coparmex" },
